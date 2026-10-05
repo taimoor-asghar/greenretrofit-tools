@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot Water Cylinder Jacket Calculator | Green Retrofit Guide</title>
+<meta name="description" content="The cheapest energy saving in Britain: calculate what an £25 hot water cylinder jacket saves you — payback in months, not years.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/cylinder-jacket-savings/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hot Water Cylinder Jacket Calculator | Green Retrofit Guide">
+<meta property="og:description" content="The cheapest energy saving in Britain: calculate what an £25 hot water cylinder jacket saves you — payback in months, not years.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/cylinder-jacket-savings/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a hot water cylinder jacket save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About £70 a year for a previously uninsulated cylinder. The jacket costs £20-£30, so payback is under 5 months — the fastest of any common retrofit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What thickness should a cylinder jacket be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "80mm, to British Standard BS 5615. Thinner economy jackets save measurably less for nearly the same money and effort — buy the proper one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What temperature should my hot water cylinder be set to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "60°C. Hot enough to kill legionella bacteria, cool enough to limit scalding and energy waste. Never set stored hot water below 50°C."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a cylinder jacket if I have a combi boiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — combis heat water on demand with no storage, so there is no cylinder to insulate. But insulating exposed hot water pipework still helps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I insulate the pipes as well?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — foam sleeves cost ~£1/m and add roughly £15/year saving, especially on pipes running through cold spaces. Do the first metre from the cylinder as a minimum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My cylinder is very old. Jacket or replace?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jacket a sound cylinder; replace a failing one (leaks, heavy corrosion). Modern cylinders come factory-insulated. If a heat pump is planned, discuss cylinder sizing with the installer first."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hot Water Cylinder Jacket Calculator | Green Retrofit Guide",
+  "description": "The cheapest energy saving in Britain: calculate what an £25 hot water cylinder jacket saves you — payback in months, not years.",
+  "url": "https://greenretrofitguide.com/tools/cylinder-jacket-savings/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>Why a £25 jacket beats a £5,000 solar array on ROI</h2>\n<p>Return on investment has a denominator, and the cylinder jacket's denominator is £25. A bare copper cylinder leaks heat continuously — it is a 120-litre tank of 60°C water sitting in a cool airing cupboard, radiating money all day and n"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Hot Water Cylinder Jacket Calculator</nav>
+<h1>Hot Water Cylinder Jacket Calculator</h1>
+<p class="lead">A £25 jacket on your hot water cylinder can save £70 a year — the best return per pound of any retrofit on this site. Check your cylinder's insulation for your saving.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="insul">Current cylinder insulation</label>
+<select id="insul">
+<option value="70" selected>None — bare copper cylinder</option>
+<option value="35">Thin foam coating (factory-fitted, old)</option>
+<option value="15">Jacket under 80mm thick</option>
+<option value="0">80mm+ jacket already fitted</option>
+</select>
+<span class="hint">Look at your cylinder: bare copper, thin yellowing foam, or a proper thick jacket?</span></div>
+<div class="field"><label for="cost">Jacket cost (£)</label>
+<input type="number" id="cost" value="25" min="10" max="100" step="1">
+<span class="hint">A British Standard 80mm jacket costs £20–£30 at any DIY store.</span></div>
+<div class="field"><label for="pipes">Also insulate exposed hot water pipes?</label>
+<select id="pipes">
+<option value="15" selected>Yes — add pipe insulation (+~£15/yr)</option>
+<option value="0">No — jacket only</option>
+</select>
+<span class="hint">Foam pipe sleeves cost ~£1/m and cut pipe heat loss dramatically.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-payback"></span> <small>payback</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-save"></div><div class="k">Annual saving</div></div>
+<div class="stat"><div class="v" id="r-cost"></div><div class="k">Total cost</div></div>
+<div class="stat"><div class="v" id="r-5yr"></div><div class="k">5-year net</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ cut / year</div></div>
+</div>
+<div class="note" style="margin-top:16px"><strong>Verdict:</strong> <span id="r-verdict"></span></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>Why a £25 jacket beats a £5,000 solar array on ROI</h2>
+<p>Return on investment has a denominator, and the cylinder jacket's denominator is £25. A bare copper cylinder leaks heat continuously — it is a 120-litre tank of 60°C water sitting in a cool airing cupboard, radiating money all day and night. Fitting an 80mm British Standard jacket cuts that standing loss by roughly three-quarters, saving about £70 a year. The payback is 0.4 years — under five months. No other retrofit on this site, or arguably in the British housing stock, returns its cost faster. The test case (no insulation, £25 jacket) gives £70 a year and a 0.4-year payback; adding £10 of pipe insulation pushes the saving to £85 for £35 total.</p>
+<p>The reason this measure is perpetually underrated is that it is invisible and unglamorous. Nobody Instagrams a cylinder jacket. Installers do not upsell it because there is no margin in a £25 DIY product. But the physics is unforgiving: an uninsulated cylinder can lose 2–3 kWh a day as standing loss — 700–1,000 kWh a year, roughly £50–£70 at gas prices and £170–£240 if you heat water electrically. If your cylinder is bare copper, you are paying to heat your airing cupboard.</p>
+<h2>What to buy and how to fit it</h2>
+<p>Buy a <strong>British Standard 80mm cylinder jacket</strong> — the standard is BS 5615, and compliant jackets are sold at every DIY store for £20–£30. Thinner "economy" jackets exist; they are a false economy, saving measurably less for nearly the same effort. Fitting takes 15 minutes: the jacket wraps around the cylinder in sections secured with straps or tape, with cut-outs positioned for the thermostat and pipework. Do not cover the thermostat — it needs to sense the cylinder temperature accurately — and leave the top of the cylinder accessible for the immersion heater if you have one.</p>
+<p><strong>Pipe insulation</strong> is the companion job: foam sleeves (£1–£2 per metre) slipped over exposed hot water pipes, especially the first metre from the cylinder and any pipework running through cold spaces. Pipes lose heat along their whole length, and uninsulated copper in a cold loft or underfloor void is a radiator you did not ask for. Ten metres of sleeve and half an hour's work adds roughly £15 a year to the saving.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>BS 5615</dt><dd>The British Standard for cylinder jackets — 80mm thickness. The number to look for on the packaging.</dd>
+<dt>Standing loss</dt><dd>Heat lost from stored hot water whether you use any or not — what the jacket attacks.</dd>
+<dt>Thermostat (cylinder)</dt><dd>Usually set to 60°C — hot enough to kill legionella, cool enough to limit scalding and waste. Never bury it under the jacket.</dd>
+<dt>Pipe sleeves</dt><dd>Foam tubes that slip over hot water pipes. ~£1/m, enormous effect per pound on exposed runs.</dd>
+</dl></div>
+<h2>The 60°C rule and legionella</h2>
+<p>While you are at the cylinder, check the thermostat: it should be set to <strong>60°C</strong>. This is the temperature that kills legionella bacteria while limiting scald risk (hot enough at the tap after pipe losses, not dangerously hot). Below 50°C, legionella can multiply in stored water — this is a genuine health consideration, not efficiency folklore. Above 65°C you are wasting energy and raising scald risk for no benefit. If your thermostat is set to 70°C "to get hotter water", turn it down to 60°C today: it is free, safer, and saves money. Combi-boiler households can ignore all of this — with no stored hot water there is no cylinder and no legionella risk — but the pipe-insulation advice still applies to exposed hot runs.</p>
+<h2>When the answer is a new cylinder, not a jacket</h2>
+<p>A jacket cannot fix a dying cylinder. If yours is leaking, heavily corroded, or the immersion heater has failed and the unit is decades old, price a replacement: modern cylinders come factory-insulated to high standards (often equivalent to 80mm+ jackets) and a new one costs £400–£800 fitted. The decision rule: jacket the sound cylinder; replace the failing one. And if you are planning a heat pump, flag the cylinder question to your installer — heat pumps want larger cylinders (or thermal stores) with bigger heat-exchanger coils to work at low flow temperatures, so a cylinder replacement may fold into the heat-pump project rather than preceding it.</p>
+<h3>Renters and the airing cupboard</h3>
+<p>Like draught-proofing, this is renter-friendly: a jacket is removable, non-damaging, and costs £25. If your rented home has a bare cylinder, fit a jacket (tell the landlord — they will not object to you spending your own money improving their property) and take it with you when you leave, or leave it as goodwill. The payback is months; even a one-year tenancy profits.</p>
+<h2>Where this sits in the retrofit order</h2>
+<p>Phase A, first weekend, alongside draught-proofing and LED bulbs: the sub-£150 measures that pay back in under two years and fund — psychologically, if not literally — the bigger phases. There is a case that the cylinder jacket should be the single first recommendation of the entire toolkit: it is the fastest payback, the lowest cost, the easiest DIY, and it works in every home with a hot water cylinder regardless of age, tenure, or wall type. If you have read this far and your cylinder is bare, stop reading and order the jacket.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How much does a hot water cylinder jacket save?</summary><p>About £70 a year for a previously uninsulated cylinder. The jacket costs £20-£30, so payback is under 5 months — the fastest of any common retrofit.</p></details>
+<details><summary>What thickness should a cylinder jacket be?</summary><p>80mm, to British Standard BS 5615. Thinner economy jackets save measurably less for nearly the same money and effort — buy the proper one.</p></details>
+<details><summary>What temperature should my hot water cylinder be set to?</summary><p>60°C. Hot enough to kill legionella bacteria, cool enough to limit scalding and energy waste. Never set stored hot water below 50°C.</p></details>
+<details><summary>Do I need a cylinder jacket if I have a combi boiler?</summary><p>No — combis heat water on demand with no storage, so there is no cylinder to insulate. But insulating exposed hot water pipework still helps.</p></details>
+<details><summary>Should I insulate the pipes as well?</summary><p>Yes — foam sleeves cost ~£1/m and add roughly £15/year saving, especially on pipes running through cold spaces. Do the first metre from the cylinder as a minimum.</p></details>
+<details><summary>My cylinder is very old. Jacket or replace?</summary><p>Jacket a sound cylinder; replace a failing one (leaks, heavy corrosion). Modern cylinders come factory-insulated. If a heat pump is planned, discuss cylinder sizing with the installer first.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/hot-water/">Hot water efficiency advice</a></li>
+<li>HSE — <a href="https://www.hse.gov.uk/legionnaires/">Legionella guidance (hot water temperatures)</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var saveJacket=num("insul"), cost=num("cost"), savePipes=num("pipes");
+  var pipeCost=savePipes>0?10:0;
+  var totalCost=cost+pipeCost, totalSave=saveJacket+savePipes;
+  var payback=totalSave>0?totalCost/totalSave:0;
+  var net5=totalSave*5-totalCost;
+  var co2=totalSave/6*0.21/1000*100;
+  var pb=payback>0?(payback<1?Math.round(payback*12)+" months":payback.toFixed(1)+" yrs"):"\u2014";
+  document.getElementById("r-payback").textContent=pb;
+  document.getElementById("r-save").textContent=money(Math.round(totalSave))+"/yr";
+  document.getElementById("r-cost").textContent=money(totalCost);
+  document.getElementById("r-5yr").textContent=(net5>=0?"":"\u2212")+money(Math.abs(Math.round(net5)));
+  document.getElementById("r-co2").textContent=co2.toFixed(2)+" t";
+  var v;
+  if(saveJacket===0&&savePipes===0) v="Your cylinder is already well insulated — nothing to gain here. Spend the £25 on draught-proofing instead.";
+  else if(saveJacket===0) v="The jacket is done, but the pipes are still leaking heat — £10 of foam sleeves is worth doing.";
+  else v="This is the cheapest win on this site: £"+totalCost+" returns £"+Math.round(totalSave)+" every year. Buy the jacket on your next DIY store trip.";
+  document.getElementById("r-verdict").textContent=v;
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

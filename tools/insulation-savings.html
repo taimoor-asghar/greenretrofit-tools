@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insulation Savings Calculator | Green Retrofit Guide</title>
+<meta name="description" content="Work out how much loft, cavity wall, solid wall or floor insulation saves a UK home — payback, 10-year profit and CO2, scaled to your property type.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/insulation-savings/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Insulation Savings Calculator | Green Retrofit Guide">
+<meta property="og:description" content="Work out how much loft, cavity wall, solid wall or floor insulation saves a UK home — payback, 10-year profit and CO2, scaled to your property type.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/insulation-savings/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which insulation should I do first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Loft insulation to 270 mm — it is the cheapest major measure (£300–£600), pays back in under two years, and is often DIY-able. Next, cavity wall fill if your walls are suitable (check with our suitability checker). Solid wall insulation comes last on pure payback but first on comfort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does cavity wall insulation cost in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically £500–£1,000 for a whole house, installed in half a day. It is one of the cheapest professional measures, but only suitable for walls without damp, with adequate cavity width, and not in severe wind-driven rain exposure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is solid wall insulation worth it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On bill savings alone the payback is long (10–20+ years at £8,000–£18,000 cost). It is worth it for comfort, condensation control, EPC improvement and property value — and it may be fully funded under ECO4 if you are eligible. Judge it on the full picture, not just the payback."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I install loft insulation myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — it is the most DIY-friendly retrofit measure. Use 270 mm of mineral wool, leave eaves ventilation clear, fit fire-safe covers over downlights, and use raised boarding on stilts if you need storage. Wear a mask and gloves; the fibres are unpleasant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will insulation cause damp or condensation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Done badly, yes — which is why installer quality matters. Cavity fill in unsuitable walls, blocked eaves ventilation, and internal wall insulation without moisture planning can all cause damp. Use TrustMark-registered installers and guarantees, and get a suitability check for cavity walls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does insulation work in summer too?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — insulation slows heat flow in both directions, so a well-insulated loft keeps the house cooler in heatwaves as well as warmer in winter. It is one of the cheapest passive cooling measures available."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Insulation Savings Calculator | Green Retrofit Guide",
+  "description": "Work out how much loft, cavity wall, solid wall or floor insulation saves a UK home — payback, 10-year profit and CO2, scaled to your property type.",
+  "url": "https://greenretrofitguide.com/tools/insulation-savings/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>Why insulation beats almost everything else</h2>\n<p>Every discussion of home retrofit eventually arrives at the same unglamorous conclusion: insulation first. The physics is unforgiving — in a typical uninsulated UK home, around a third of heat escapes through the walls, a quarter through the r"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Insulation Savings Calculator</nav>
+<h1>Insulation Savings Calculator</h1>
+<p class="lead">Insulation is the highest-return retrofit most UK homes can buy. Pick a measure and your property type for honest savings, payback and carbon figures — scaled from Energy Saving Trust typical values.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="ptype">Property type</label>
+<select id="ptype">
+<option value="1.0">Detached house</option>
+<option value="0.7" selected>Semi-detached house</option>
+<option value="0.6">Terraced house</option>
+<option value="0.4">Flat / maisonette</option>
+</select></div>
+<div class="field"><label for="measure">Insulation measure</label>
+<select id="measure" onchange="setDefaultCost()">
+<option value="loft">Loft insulation — top up to 270 mm</option>
+<option value="cavity">Cavity wall insulation</option>
+<option value="solidint">Solid wall insulation — internal</option>
+<option value="solidext">Solid wall insulation — external</option>
+<option value="floor">Suspended floor insulation</option>
+</select></div>
+<div class="field"><label for="cost">Install cost (£)</label>
+<input type="number" id="cost" value="450" min="50" max="30000" step="50">
+<span class="hint">Prefilled with a typical UK price — overwrite it with your actual quote.</span></div>
+<div class="field"><label for="gasp">Gas tariff (p/kWh)</label>
+<input type="number" id="gasp" value="6" min="2" max="20" step="0.1">
+<span class="hint">Used to convert £ savings into kWh and CO2.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-save"></span> <small>saved per year</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-payback"></div><div class="k">Payback period</div></div>
+<div class="stat"><div class="v" id="r-net10"></div><div class="k">10-year net profit</div></div>
+<div class="stat"><div class="v" id="r-kwh"></div><div class="k">Energy saved per year</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO2 saved per year</div></div>
+</div>
+<p style="margin-top:12px;font-size:14px;color:#737373" id="r-note"></p>
+</div>
+</section>
+<article class="guide">
+
+<h2>Why insulation beats almost everything else</h2>
+<p>Every discussion of home retrofit eventually arrives at the same unglamorous conclusion: insulation first. The physics is unforgiving — in a typical uninsulated UK home, around a third of heat escapes through the walls, a quarter through the roof, and the rest through floors, windows and draughts. No heating system, however efficient, can economically overcome a building that leaks warmth as fast as it is made. Insulation is also the only retrofit measure that <em>reduces the size</em> of everything that follows: an insulated house needs a smaller, cheaper heat pump, fewer solar panels to cover its demand, and lower-capacity radiators. That is why every credible retrofit framework — from the Energy Saving Trust to PAS 2035, the UK's retrofit quality standard — sequences fabric before systems.</p>
+<p>This calculator scales Energy Saving Trust typical savings by property type, because a detached house has far more exposed wall and roof area than a flat. The baseline figures assume a detached house; the semi factor of 0.7, terrace 0.6 and flat 0.4 reflect the reduced external surface. These are planning figures, not promises — your actual saving depends on your current state (going from nothing to 270 mm of loft insulation saves far more than topping up from 150 mm) and on your energy tariff. The cost defaults are typical 2026 UK installed prices; always overwrite them with your quotes.</p>
+<h2>The five measures, honestly ranked</h2>
+<p><strong>Loft insulation</strong> is the undisputed champion of cost-effectiveness. Rolling mineral wool to 270 mm in an empty loft costs £300–£600, saves a detached house around £300 a year, and pays back in under two years. It is also the most DIY-able measure on this site — competent DIYers can do it in a weekend, though the hatch, pipework and downlights need proper treatment (downlights need fire-safe covers, not insulation piled on top). The main caveat is boarding: if you use the loft for storage, raised boarding on stilts preserves the insulation's depth, because compressed insulation loses performance.</p>
+<p><strong>Cavity wall insulation</strong> fills the gap in cavity walls with mineral wool, beads or foam, typically in half a day, for £500–£1,000. The £350/year detached saving makes it the second-best value. But — and this is a genuine but — it is not suitable for every cavity. Homes in severe wind-driven rain exposure, with faulty wall ties, existing damp, or narrow cavities can suffer badly from fill that bridges moisture across. Our <a href="https://greenretrofitguide.com/tools/cavity-wall-suitability/">cavity wall suitability checker</a> exists precisely because this decision is safety-critical; never let a salesperson talk you past damp or exposure concerns.</p>
+<p><strong>Solid wall insulation</strong> is the big one for pre-1920s Britain. Internal wall insulation (£5,000–£12,000 for a typical house) loses you 50–100 mm of room depth per treated wall but is cheaper and needs no scaffolding; external wall insulation (£8,000–£18,000) wraps the house in a weatherproof jacket, transforms the appearance, and avoids disturbing interiors, but needs planning consideration in conservation areas. Both save around £500 a year on a detached house — yet even so, the payback stretches past a decade on bills alone. The real case for solid wall insulation is comfort (warm walls end condensation and cold spots), EPC bands, and property value; judge it on those, not the payback figure above.</p>
+<p><strong>Floor insulation</strong> addresses the draughty suspended timber floors of Victorian and Edwardian houses. Insulation fitted between joists from below (or from above during a re-floor) saves around £150 a year for a detached house and — crucially — eliminates the cold draughts that make rooms feel chilly even when the thermostat says 20&deg;C. It is disruptive if done from above (furniture out, floorboards up), so the smart time is during any planned flooring work. Solid concrete floors are much harder to treat and usually not worth it.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>270 mm loft standard</dt><dd>The recommended depth for mineral wool loft insulation in the UK — roughly the depth of two rolls.</dd>
+<dt>Cavity wall</dt><dd>Two wall leaves with a gap between, standard in UK homes built roughly 1920–1990. The gap can be filled with insulation.</dd>
+<dt>Solid wall</dt><dd>A single-thickness wall (usually 9-inch brick) in pre-1920s homes — no cavity to fill, so insulation goes inside or outside.</dd>
+<dt>U-value</dt><dd>Heat loss rate through a material. An uninsulated solid wall is ~2.1 W/m&sup2;K; with external insulation, ~0.3.</dd>
+<dt>PAS 2035</dt><dd>The UK standard for whole-house retrofit: assessment, design and monitoring by qualified coordinators.</dd>
+</dl></div>
+<h2>Comfort is the hidden return</h2>
+<p>The payback figures above understate insulation's value because they only count bill savings. Ask anyone who has insulated a cold house and they will talk about comfort first: rooms that hold temperature overnight, walls you can sit against without flinching, the end of condensation streaming down bedroom windows on winter mornings. Condensation matters beyond comfort — persistent damp feeds mould, and mould aggravates asthma and respiratory conditions, which is one reason fuel-poverty researchers treat insulation as a health intervention as much as an energy one. If anyone in your household has asthma, the case for wall and loft insulation is medical as well as financial.</p>
+<h2>Grants that pay for insulation</h2>
+<p>Before paying full price, check whether someone else will pay. ECO4 obliges energy suppliers to fund insulation and heating upgrades for low-income and vulnerable households — fully funded, including solid wall insulation that would otherwise cost five figures. The Great British Insulation Scheme covers a single insulation measure for homes in council tax bands A–D with EPC D–G in England. Home Energy Scotland offers up to £7,500 in grants plus interest-free loans. And every UK installation of insulation currently benefits from 0% VAT. Our <a href="https://greenretrofitguide.com/tools/grants-and-subsidies/">grant and subsidy finder</a> matches your circumstances to the live schemes in under a minute — run it before you get quotes, because grant-funded work must use approved installers and the order matters.</p>
+<h2>Installer quality: the difference between saving and disaster</h2>
+<p>Insulation is simple physics but fiddly craft, and bad installation ranges from useless to destructive. Cavity fill in an unsuitable wall can cause penetrating damp; loft insulation stuffed into eaves blocks ventilation and rots roof timbers; internal wall insulation without a vapour strategy moves the dew point into the wall and grows mould behind the plasterboard. The protections are straightforward: use a TrustMark-registered installer, insist on a guarantee (CIGA for cavity wall, for example), and for anything beyond loft top-up consider PAS 2035 assessment — a retrofit coordinator spots the moisture risks a salesperson will not mention. The cheapest quote for wall insulation is very often the most expensive mistake.</p>
+<h2>What insulation cannot do</h2>
+<p>Insulation slows heat loss; it does not create heat, fix a broken boiler, or ventilate a house. Two cautions follow from that. First, as you seal a home up, ventilation matters more, not less — extractor fans, trickle vents and occasional airing prevent the stuffy, moisture-laden air that insulation can trap. Never draught-proof or insulate your way past the need for controlled ventilation. Second, insulation will not rescue a home with fundamental damp: fix leaking gutters, failed pointing and rising damp <em>before</em> insulating, or you will simply be insulating a wet wall more expensively.</p>
+<h2>Insulation and your EPC band</h2>
+<p>Each measure here moves your SAP score: loft to 270 mm is worth roughly +8 points, cavity fill +10, solid wall insulation +15. Two measures can lift a band-D home into band C — the threshold that increasingly matters for green mortgages and proposed rental standards. Model your specific combination with our <a href="https://greenretrofitguide.com/tools/epc-improvement/">EPC improvement estimator</a>, and start from an honest baseline with the <a href="https://greenretrofitguide.com/tools/home-energy-audit/">home energy audit</a>.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>Which insulation should I do first?</summary><p>Loft insulation to 270 mm — it is the cheapest major measure (£300–£600), pays back in under two years, and is often DIY-able. Next, cavity wall fill if your walls are suitable (check with our suitability checker). Solid wall insulation comes last on pure payback but first on comfort.</p></details>
+<details><summary>How much does cavity wall insulation cost in the UK?</summary><p>Typically £500–£1,000 for a whole house, installed in half a day. It is one of the cheapest professional measures, but only suitable for walls without damp, with adequate cavity width, and not in severe wind-driven rain exposure.</p></details>
+<details><summary>Is solid wall insulation worth it?</summary><p>On bill savings alone the payback is long (10–20+ years at £8,000–£18,000 cost). It is worth it for comfort, condensation control, EPC improvement and property value — and it may be fully funded under ECO4 if you are eligible. Judge it on the full picture, not just the payback.</p></details>
+<details><summary>Can I install loft insulation myself?</summary><p>Yes — it is the most DIY-friendly retrofit measure. Use 270 mm of mineral wool, leave eaves ventilation clear, fit fire-safe covers over downlights, and use raised boarding on stilts if you need storage. Wear a mask and gloves; the fibres are unpleasant.</p></details>
+<details><summary>Will insulation cause damp or condensation?</summary><p>Done badly, yes — which is why installer quality matters. Cavity fill in unsuitable walls, blocked eaves ventilation, and internal wall insulation without moisture planning can all cause damp. Use TrustMark-registered installers and guarantees, and get a suitability check for cavity walls.</p></details>
+<details><summary>Does insulation work in summer too?</summary><p>Yes — insulation slows heat flow in both directions, so a well-insulated loft keeps the house cooler in heatwaves as well as warmer in winter. It is one of the cheapest passive cooling measures available.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/insulation/">Insulation advice and typical savings</a></li>
+<li>Gov.uk — <a href="https://www.gov.uk/government/collections/great-british-insulation-scheme">Great British Insulation Scheme</a></li>
+<li>TrustMark — <a href="https://www.trustmark.org.uk/">Find registered retrofit tradespeople</a></li>
+<li>CIGA — <a href="https://ciga.co.uk/">Cavity Insulation Guarantee Agency</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+var BASE = {loft:{s:300,c:450,n:"Loft insulation to 270 mm"},
+            cavity:{s:350,c:800,n:"Cavity wall insulation"},
+            solidint:{s:500,c:8000,n:"Solid wall insulation (internal)"},
+            solidext:{s:500,c:12000,n:"Solid wall insulation (external)"},
+            floor:{s:150,c:1200,n:"Suspended floor insulation"}};
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+Math.round(x).toLocaleString("en-GB");}
+function setDefaultCost(){
+  var m=document.getElementById("measure").value;
+  document.getElementById("cost").value=BASE[m].c;
+  calculate();
+}
+function calculate(){
+  var f=num("ptype"), m=document.getElementById("measure").value;
+  var cost=num("cost"), gasP=num("gasp");
+  var saving=BASE[m].s*f;
+  var payback=saving>0?cost/saving:0;
+  var net10=saving*10-cost;
+  var kwh=gasP>0?Math.round(saving/gasP*100):0;
+  var co2=(kwh*0.21/1000).toFixed(2);
+  document.getElementById("r-save").textContent=money(saving);
+  document.getElementById("r-payback").textContent=payback>0?payback.toFixed(1)+" years":"\u2014";
+  document.getElementById("r-net10").textContent=(net10>=0?"":"\u2212")+money(Math.abs(net10));
+  document.getElementById("r-kwh").textContent=kwh.toLocaleString()+" kWh";
+  document.getElementById("r-co2").textContent=co2+" t";
+  var note=document.getElementById("r-note");
+  if(payback>0 && payback<2){note.textContent="Verdict: an outstanding investment — few home improvements pay back this fast.";}
+  else if(payback<7){note.textContent="Verdict: a solid medium-term investment, and the comfort gain starts on day one.";}
+  else{note.textContent="Verdict: a long payback on bills alone — weigh the comfort, condensation and EPC-band benefits too.";}
+  document.getElementById("result").classList.add("show");
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

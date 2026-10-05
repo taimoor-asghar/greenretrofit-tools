@@ -57,6 +57,48 @@ Test: 12,000 kWh gas + 3,000 kWh elec + 8,000 petrol miles → 2.52 + 0.62 + 2.2
 ## Hub page — slug: tools (path /tools/)
 Card grid of the 5 tools with icon, name, one-line description, live search filter. Same interaction pattern as doctorwithdata.com/calculators/.
 
+## Phase 2 — decision helpers
+
+### Tool 6 — Double Glazing ROI Calculator — slug: double-glazing-roi
+Inputs: property type (detached 1.4, semi 1.0, terrace 0.8, flat 0.5), number of windows, current glazing (single, old double pre-2002), new glazing (modern double 1.0, triple 1.3), install cost £ (default windows × £500).
+Maths:
+- annual_saving £ = windows × 16.5 × property_factor × new_glazing_factor  (16.5 = EST per-window saving £/yr for single→double, semi baseline)
+- payback_years = install_cost / annual_saving
+Test case: semi, 10 windows, single→modern double, £5,000 → saving £165/yr, payback ≈ 30 yrs. The tool must be honest: glazing payback is long — lead with comfort, noise and condensation benefits, not just £.
+Guide: U-values, trickle vents and ventilation warning, FENSA certification.
+
+### Tool 7 — EV Home Charger Cost Calculator — slug: ev-home-charger
+Inputs: annual miles, current car mpg (default 40), petrol price £/L (default 1.45), EV efficiency miles/kWh (default 3.5), charging tariff p/kWh (default 7 EV overnight tariff, option 24 standard), charger install £ (default 1000).
+Maths:
+- petrol_annual £ = miles / mpg × 4.546 × petrol_price
+- ev_annual £ = miles / efficiency × tariff_p / 100
+- saving £ = petrol_annual − ev_annual; payback = install / saving
+Test case: 8000 miles, 40 mpg, £1.45/L, 3.5 mi/kWh, 7p tariff → petrol £1,318, EV £160, saving £1,158/yr, payback 0.9 yr.
+Guide: EV tariffs (Octopus Intelligent etc.), charger grants for renters/flats, 3-pin vs 7kW reality.
+
+### Tool 8 — Smart Thermostat Savings Estimator — slug: smart-thermostat-savings
+Inputs: annual heating bill £, current controls (none 15%, basic thermostat 10%, programmer 5%), occupancy (out weekdays 1.2, mixed 1.0, home all day 0.7), thermostat cost £ (default 200 installed).
+Maths: annual_saving = bill × control_rate × occupancy_factor; payback = cost / saving.
+Test case: £900 bill, no controls, out weekdays → £162/yr, payback 1.2 yrs.
+Guide: what smart features actually save money (geofencing, weather compensation), compatibility with combi vs system boilers.
+
+### Tool 9 — Grant & Subsidy Finder — slug: grants-and-subsidies
+Inputs: nation (England/Wales/Scotland/NI), tenure (own/mortgage, private rent, social rent), EPC band (A–G or unknown), on means-tested benefits (yes/no), council tax band (A–H), current heating (gas/oil/electric/heat pump).
+Eligibility logic:
+- BUS (Boiler Upgrade Scheme): England/Wales + owner + replacing fossil fuel heating → £7,500 heat pump grant.
+- ECO4: on benefits + EPC E–G + owner or private renter → insulation/heating measures, fully funded.
+- GBIS: EPC D–G + council tax A–D (England) → one insulation measure.
+- Home Energy Scotland: Scotland + owner → up to £7,500 grant + £7,500 interest-free loan.
+- 0% VAT: all UK, energy-saving installations → automatic at point of sale.
+Output: eligible schemes with amounts, key conditions, and gov.uk apply links. Never invent scheme details — link out.
+Test case: England, owner, EPC E, on benefits, gas boiler → ECO4 + BUS + 0% VAT.
+
+### Tool 10 — Green Mortgage Checker — slug: green-mortgage-checker
+Inputs: mortgage amount £, term years, standard rate %, green discount % (default 0.15), EPC band (A/B qualifies, else explain).
+Maths: monthly payment M = P × r(1+r)^n / ((1+r)^n − 1), r = annual/12, n = years×12. Compute M_standard and M_green; saving_2yr = (M_standard − M_green) × 24.
+Test case: £200,000, 25 yrs, 4.5% vs 4.35% → M ≈ £1,112 vs £1,095, saving ≈ £410 over 2-yr fix.
+Guide: which lenders offer green products (2026 snapshot, verify before ship), EPC evidence requirements, remortgage vs product transfer.
+
 ## Repo
 taimoor-asghar/greenretrofit-tools (create if missing). Structure: tools/<slug>.html, PROGRESS.md, sitemap.xml on completion.
 

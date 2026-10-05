@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Energy Audit Tool | Green Retrofit Guide</title>
+<meta name="description" content="Answer 15 questions about your UK home and get an estimated EPC band plus your top 3 retrofit priorities, with typical costs and savings.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/home-energy-audit/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Home Energy Audit Tool | Green Retrofit Guide">
+<meta property="og:description" content="Answer 15 questions about your UK home and get an estimated EPC band plus your top 3 retrofit priorities, with typical costs and savings.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/home-energy-audit/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this as accurate as a real EPC assessment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — it is a screening tool. A real EPC uses measured dimensions, inspected boiler data and accredited SAP software, and is lodged on the national register. This audit typically lands within one band of a real assessment when answers are honest, which is enough for prioritising work but not for sales, rentals or grant applications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My home scored band D — is that bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is average: the typical UK home is band D. The good news is that D to C is the highest-value move you can make — it usually takes two fabric measures and unlocks green mortgage products and future rental standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does wall insulation matter more than a new boiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because heat loss is physics: around a third of heat escapes through uninsulated walls, and no heating system — however efficient — can overcome a leaky building cheaply. SAP weights fabric heavily for the same reason. Insulate first, then right-size the heating."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do first if my score is very low (F or G)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the cheapest points: draught-proofing, cylinder jacket, LEDs and heating controls — all pay back within two years. Then get a professional assessment before committing to big fabric work; ECO4 may fully fund measures if you are on benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an EPC to get a heat pump grant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — the Boiler Upgrade Scheme requires a valid EPC with no outstanding loft or cavity wall insulation recommendations. This audit tells you roughly where you stand, but the grant needs the lodged certificate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I re-audit my home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After every completed measure. Re-running the quiz takes two minutes and shows your progress up the bands — it is also a useful record if you later commission a formal EPC."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Home Energy Audit Tool | Green Retrofit Guide",
+  "description": "Answer 15 questions about your UK home and get an estimated EPC band plus your top 3 retrofit priorities, with typical costs and savings.",
+  "url": "https://greenretrofitguide.com/tools/home-energy-audit/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>How this audit estimates your EPC band</h2>\n<p>A real Energy Performance Certificate is produced by an accredited assessor running the government's SAP (Standard Assessment Procedure) software: they measure every room, inspect the boiler's data plate, check insulation where it is visible, and l"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Home Energy Audit Tool</nav>
+<h1>Home Energy Audit Tool</h1>
+<p class="lead">A proper EPC assessment costs £60–£120 and takes an hour. This free 15-question audit estimates your EPC band in two minutes — and tells you which three upgrades matter most for <em>your</em> house.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+<div class="field"><label for="q-ptype">1. Property type</label>
+<select id="q-ptype">
+<option value="0">Detached</option>
+<option value="-3">Semi-detached</option>
+<option value="-2">Terraced</option>
+<option value="-4">Flat / maisonette</option>
+</select></div>
+<div class="field"><label for="q-age">2. Age of the property</label>
+<select id="q-age">
+<option value="-15">Before 1920</option>
+<option value="-10">1920–1975</option>
+<option value="-6">1976–1995</option>
+<option value="-3">1996–2011</option>
+<option value="0">2012 or newer</option>
+</select></div>
+<div class="field"><label for="q-walls">3. Wall construction and insulation</label>
+<select id="q-walls">
+<option value="-18">Solid walls, not insulated</option>
+<option value="-8">Solid walls, insulated</option>
+<option value="-12">Cavity walls, not insulated</option>
+<option value="-4">Cavity walls, insulated</option>
+<option value="-3">Timber frame, insulated</option>
+<option value="-10">Not sure</option>
+</select></div>
+<div class="field"><label for="q-loft">4. Loft insulation depth</label>
+<select id="q-loft">
+<option value="-12">No loft insulation</option>
+<option value="-8">Less than 100 mm</option>
+<option value="-4">100–200 mm</option>
+<option value="0">270 mm or more</option>
+<option value="-2">No loft (flat / top-floor conversion)</option>
+</select></div>
+<div class="field"><label for="q-glazing">5. Windows</label>
+<select id="q-glazing">
+<option value="-10">Single glazed</option>
+<option value="-6">Double glazed, pre-2002</option>
+<option value="-2">Double glazed, modern</option>
+<option value="0">Triple glazed</option>
+</select></div>
+<div class="field"><label for="q-heating">6. Main heating system</label>
+<select id="q-heating">
+<option value="-8">Old gas boiler (15+ years)</option>
+<option value="-4">Modern condensing gas boiler</option>
+<option value="-10">Oil boiler</option>
+<option value="-14">Direct electric heaters / storage heaters</option>
+<option value="2">Heat pump</option>
+<option value="-6">Not sure</option>
+</select></div>
+<div class="field"><label for="q-controls">7. Heating controls</label>
+<select id="q-controls">
+<option value="-6">No thermostat or timer</option>
+<option value="-3">Room thermostat only</option>
+<option value="-2">Thermostat + TRVs on radiators</option>
+<option value="0">Smart thermostat / full smart controls</option>
+</select></div>
+<div class="field"><label for="q-draught">8. Draught-proofing</label>
+<select id="q-draught">
+<option value="-5">Draughty — gaps around doors, windows, floors</option>
+<option value="-2">Partially draught-proofed</option>
+<option value="0">Well draught-proofed</option>
+</select></div>
+<div class="field"><label for="q-cylinder">9. Hot water cylinder insulation</label>
+<select id="q-cylinder">
+<option value="0">No cylinder (combi boiler)</option>
+<option value="-4">No insulation on cylinder</option>
+<option value="-2">Thin or old jacket</option>
+<option value="0">80 mm+ modern jacket</option>
+</select></div>
+<div class="field"><label for="q-floor">10. Ground floor</label>
+<select id="q-floor">
+<option value="-5">Suspended timber, not insulated</option>
+<option value="0">Suspended timber, insulated</option>
+<option value="0">Solid concrete floor</option>
+<option value="-1">Flat above another heated flat</option>
+</select></div>
+<div class="field"><label for="q-hotwater">11. Hot water system</label>
+<select id="q-hotwater">
+<option value="-3">Old boiler + separate cylinder</option>
+<option value="0">Combi boiler</option>
+<option value="0">Heat pump + cylinder</option>
+<option value="-4">Electric immersion only</option>
+</select></div>
+<div class="field"><label for="q-lighting">12. Lighting</label>
+<select id="q-lighting">
+<option value="-3">Mostly old halogens / incandescents</option>
+<option value="-1">Mix of old and LED</option>
+<option value="0">Mostly or all LED</option>
+</select></div>
+<div class="field"><label for="q-extract">13. Extractor fans (kitchen / bathroom)</label>
+<select id="q-extract">
+<option value="-1">No extractor fans</option>
+<option value="0">Yes, in kitchen and bathroom</option>
+</select></div>
+<div class="field"><label for="q-secondary">14. Secondary heating</label>
+<select id="q-secondary">
+<option value="-3">Open fire used regularly</option>
+<option value="-1">Wood-burning stove</option>
+<option value="0">None / rarely used</option>
+</select></div>
+<div class="field"><label for="q-solar">15. Solar panels already installed?</label>
+<select id="q-solar">
+<option value="0">No</option>
+<option value="3">Yes</option>
+</select></div>
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-band"></span> <small>estimated EPC band</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-score"></div><div class="k">SAP-lite score (of 100)</div></div>
+</div>
+<h3 style="font-family:Arvo,serif;margin:16px 0 10px;font-size:18px">Your top 3 priorities</h3>
+<div id="r-recs"></div>
+<p style="margin-top:12px;font-size:14px;color:#737373">This is an estimate, not a certified EPC. Only a lodged EPC assessment counts for sales, rentals and grant applications.</p>
+</div>
+</section>
+<article class="guide">
+
+<h2>How this audit estimates your EPC band</h2>
+<p>A real Energy Performance Certificate is produced by an accredited assessor running the government's SAP (Standard Assessment Procedure) software: they measure every room, inspect the boiler's data plate, check insulation where it is visible, and lodge the result on the national EPC register. This tool compresses that process into fifteen questions and a simplified scoring model — "SAP-lite" — that starts every home at 100 points (a perfect new-build) and subtracts points for each weakness using weights that mirror SAP's priorities. The exact weights are documented in the page's code comments: walls and age carry the heaviest deductions because in SAP they dominate heat loss, while lighting and extractor fans are small because in SAP they are small.</p>
+<p>The resulting score maps to EPC bands on the standard SAP scale: A at 92+, B at 81+, C at 69+, D at 55+, E at 39+, F at 21+, and G below 21. The average UK home sits in band D (around 60–65 points), which tells you something important: if this audit puts you in D, you are normal, and the measures below will move you up faster than you might expect. A jump from D to C is the single most valuable band move in the UK property market — it is the threshold mortgage lenders use for green products and the minimum standard the government has repeatedly proposed for rentals.</p>
+<h2>Why the questions are in this order</h2>
+<p>The quiz starts with the things you cannot change cheaply — property type and age — because they set the ceiling. A pre-1920 detached house with solid walls begins life 33 points behind a post-2012 flat before a single question about behaviour, and no amount of LED bulbs closes that gap; only wall insulation does. That is deliberate: the audit is a fabric-first tool, and fabric questions (walls, loft, floor, glazing, draught-proofing) account for the majority of available deductions. Heating questions come next because the system matters enormously but is downstream of fabric — putting a heat pump in an uninsulated solid-wall house is the classic expensive mistake, and the scoring reflects it by punishing poor fabric more than an old boiler.</p>
+<p>The final questions are the quick wins: cylinder jackets, lighting, draught-proofing. They score few points because they save modest energy in SAP terms, but they appear in recommendations precisely because their payback is measured in months, not decades. The audit's recommendation engine works by ranking your <em>worst</em> answers — the largest deductions — and mapping them to measures with Energy Saving Trust typical cost and saving bands. Your top three priorities are therefore the three weaknesses costing you the most, which is also how a professional retrofit assessor thinks.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>EPC (Energy Performance Certificate)</dt><dd>The A–G rating required when selling or renting a home in the UK, valid for 10 years and lodged on the national register.</dd>
+<dt>SAP</dt><dd>Standard Assessment Procedure — the government's methodology for rating home energy performance, scored 1–100+.</dd>
+<dt>Fabric first</dt><dd>The retrofit principle: insulate and draught-proof the building before upgrading heating systems.</dd>
+<dt>TRVs</dt><dd>Thermostatic radiator valves — let you set temperatures room by room instead of heating the whole house equally.</dd>
+<dt>U-value</dt><dd>How fast heat escapes through a building element. Lower is better; modern double glazing is ~1.4 W/m&sup2;K.</dd>
+</dl></div>
+<h2>Reading your result honestly</h2>
+<p>Three things this audit cannot do. First, it cannot see inside your walls: if you answer "not sure" on wall construction, it assumes the worse case, which is the safe assumption for planning but may underrate your home. A borescope survey (£100–£200) settles it. Second, it does not model your behaviour — SAP assumes standard occupancy and heating patterns, so a frugal household will outperform its band and a wasteful one will underperform it. Third, it is not lodged anywhere: landlords need a real EPC from the register, and grant schemes like ECO4 and the Boiler Upgrade Scheme require one too. Treat this audit as a prioritisation tool, then get the real certificate when money is on the table.</p>
+<h2>What the bands mean for your wallet</h2>
+<p>The band is not just a letter — it is a gateway. Band C is the emerging dividing line in UK housing policy: green mortgages typically require A or B, proposed minimum rental standards target C, and several grant schemes prioritise E–G homes because that is where the fuel-poor live. Moving from D to C typically needs 10–20 SAP points, which is achievable with two fabric measures (loft insulation plus cavity fill, for example) in many homes — our <a href="https://greenretrofitguide.com/tools/epc-improvement/">EPC improvement estimator</a> models exactly this. Moving from C to B is harder and usually needs a heating system change or solar. Moving from G or F upward is where the biggest bill savings live: an F-rated home can easily spend twice per square metre what a C-rated one does.</p>
+<h2>Why two identical houses can get different EPCs</h2>
+<p>One dirty secret of the EPC system: the same house can receive different ratings from different assessors. Studies have repeatedly found band-level variation, because assessors make judgement calls — estimating wall construction where it is hidden, dating the boiler from a worn data plate, deciding whether that loft insulation is 100 mm or 150 mm under poor lighting. The system also rewards what is documented: keep receipts, MCS certificates, and insulation guarantees, and show them to your assessor, because an assessor who can <em>evidence</em> a measure scores it higher than one who must assume. If you are preparing for an assessment that matters (a sale, a remortgage, a grant application), tidy the loft hatch access, dig out the boiler manual, and photograph insulation before it is boarded over — these small acts can be worth half a band.</p>
+<h2>Your top three priorities: how to act on them</h2>
+<p>The recommendation panel links each priority to its dedicated calculator on this site — run the numbers for your specific home before getting quotes, because national averages lie about individual houses. The general sequencing rule is: quick wins first (anything with payback under two years: cylinder jacket, LEDs, draught-proofing, controls), then fabric (insulation, glazing — the building must be efficient before new heating), then systems (heat pump, solar — sized for the improved fabric, not the leaky original). Our <a href="https://greenretrofitguide.com/tools/retrofit-planner/">whole-house retrofit planner</a> assembles this into a phased plan with cumulative costs when you are ready for the full picture.</p>
+<h2>Common surprises in audit results</h2>
+<p>First surprise: heating controls often outrank a new boiler in the recommendations. A £200 smart thermostat on an old boiler can save more per pound than a £3,000 boiler upgrade — controls are the most underrated measure in UK housing. Second: draught-proofing appears for almost everyone, because almost every UK home has gaps its occupants have stopped noticing; the chimney alone can account for a startling share. Third: if you scored well everywhere but still landed in C, the remaining points are almost always in the heating system — gas boilers cap out, and only heat pumps or solar push into B territory. That is not a flaw in the audit; it is the physics of the UK housing stock. If your result surprised you, re-check the two answers people get wrong most often — wall construction (many 1930s houses have cavities their owners never knew about) and loft depth (compressed old insulation reads deeper than it performs).</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>Is this as accurate as a real EPC assessment?</summary><p>No — it is a screening tool. A real EPC uses measured dimensions, inspected boiler data and accredited SAP software, and is lodged on the national register. This audit typically lands within one band of a real assessment when answers are honest, which is enough for prioritising work but not for sales, rentals or grant applications.</p></details>
+<details><summary>My home scored band D — is that bad?</summary><p>It is average: the typical UK home is band D. The good news is that D to C is the highest-value move you can make — it usually takes two fabric measures and unlocks green mortgage products and future rental standards.</p></details>
+<details><summary>Why does wall insulation matter more than a new boiler?</summary><p>Because heat loss is physics: around a third of heat escapes through uninsulated walls, and no heating system — however efficient — can overcome a leaky building cheaply. SAP weights fabric heavily for the same reason. Insulate first, then right-size the heating.</p></details>
+<details><summary>What should I do first if my score is very low (F or G)?</summary><p>Start with the cheapest points: draught-proofing, cylinder jacket, LEDs and heating controls — all pay back within two years. Then get a professional assessment before committing to big fabric work; ECO4 may fully fund measures if you are on benefits.</p></details>
+<details><summary>Do I need an EPC to get a heat pump grant?</summary><p>Yes — the Boiler Upgrade Scheme requires a valid EPC with no outstanding loft or cavity wall insulation recommendations. This audit tells you roughly where you stand, but the grant needs the lodged certificate.</p></details>
+<details><summary>How often should I re-audit my home?</summary><p>After every completed measure. Re-running the quiz takes two minutes and shows your progress up the bands — it is also a useful record if you later commission a formal EPC.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Gov.uk — <a href="https://www.gov.uk/energy-performance-certificate-commercial-property">Energy Performance Certificates: guidance</a></li>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/insulation/">Insulation advice and typical savings</a></li>
+<li>BRE — <a href="https://www.bregroup.com/sap/">Standard Assessment Procedure (SAP)</a></li>
+<li>Gov.uk — <a href="https://www.gov.uk/apply-boiler-upgrade-scheme">Boiler Upgrade Scheme eligibility</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+var RECS = {"walls": ("Wall insulation", "£500–£15,000 depending on type", "£150–£500/yr", "insulation-savings", "Walls lose around a third of heat in uninsulated homes — the single biggest fabric loss."), "loft": ("Loft insulation to 270 mm", "£300–£600", "£150–£300/yr", "insulation-savings", "The cheapest major insulation job; heat rises, and a bare loft is money drifting skyward."), "glazing": ("Window upgrade", "£3,000–£8,000", "£100–£165/yr", "double-glazing-roi", "Honest note: glazing payback is long. Do it for comfort, noise and condensation — not pure £."), "heating": ("Heating system upgrade", "£3,000–£12,000 (less £7,500 BUS grant for heat pumps)", "varies", "heat-pump-vs-gas-boiler", "An old boiler is the heart of high bills; a heat pump in a well-insulated home cuts carbon sharply."), "controls": ("Heating controls", "£150–£250", "£75–£160/yr", "smart-thermostat-savings", "Controls are the cheapest way to stop heating empty rooms."), "draught": ("Draught-proofing", "£120 DIY – £400 professional", "£40–£90/yr", "draught-proofing-savings", "Fast, cheap, and instantly noticeable in comfort."), "cylinder": ("Hot water cylinder jacket", "£25", "up to £70/yr", "cylinder-jacket-savings", "The cheapest win on this site — pays for itself in months."), "floor": ("Floor insulation", "£800–£1,500", "£60–£150/yr", "insulation-savings", "Suspended timber floors leak heat and draughts; insulation fixes both."), "lighting": ("Switch to LED lighting", "£3–£5 per bulb", "£5–£12/yr per bulb", "led-savings", "Halogen spotlights are tiny heaters you pay 24p/kWh to run."), "secondary": ("Reduce open-fire use", "£0", "saves fuel + health", "home-carbon-footprint", "Open fires are ~20% efficient and a major source of indoor particulate pollution."), "age": ("Fabric-first survey", "free–£300", "unlocks all other savings", "home-energy-audit", "Older homes benefit most from a professional retrofit assessment before spending."), "solar": ("Consider solar panels", "£5,000–£8,000", "£400–£700/yr", "solar-panel-roi", "With fabric sorted, solar is the highest-return generation measure for most roofs.")};
+function num(id){var el=document.getElementById(id);return parseInt(el.value,10)||0;}
+function calculate(){
+  var score=100, worst=[];
+  var ids=["ptype", "age", "walls", "loft", "glazing", "heating", "controls", "draught", "cylinder", "floor", "hotwater", "lighting", "extract", "secondary", "solar"];
+  var labels=["Property type", "Age of the property", "Wall construction and insulation", "Loft insulation depth", "Windows", "Main heating system", "Heating controls", "Draught-proofing", "Hot water cylinder insulation", "Ground floor", "Hot water system", "Lighting", "Extractor fans (kitchen / bathroom)", "Secondary heating", "Solar panels already installed?"];
+  for(var i=0;i<ids.length;i++){
+    var d=num("q-"+ids[i]);
+    score+=d;
+    worst.push({key:ids[i],d:d,label:labels[i]});
+  }
+  worst.sort(function(a,b){return a.d-b.d;});
+  var band="G"; if(score>=92)band="A"; else if(score>=81)band="B"; else if(score>=69)band="C";
+  else if(score>=55)band="D"; else if(score>=39)band="E"; else if(score>=21)band="F";
+  if(score>100)score=100; if(score<0)score=0;
+  document.getElementById("r-band").textContent=band;
+  document.getElementById("r-score").textContent=score;
+  var recs=[]; var seen={};
+  for(var j=0;j<worst.length && recs.length<3;j++){
+    var k=worst[j].key;
+    if(worst[j].d<0 && RECS[k] && !seen[k]){seen[k]=1;recs.push(RECS[k]);}
+  }
+  var html="";
+  for(var r=0;r<recs.length;r++){
+    var m=recs[r];
+    html+='<div class="stat" style="margin-bottom:10px"><div class="v" style="font-size:17px">'+(r+1)+". "+m[0]+'</div>'+
+    '<div class="k">Typical cost: '+m[1]+' &middot; Typical saving: '+m[2]+'<br>'+m[4]+
+    ' <a href="https://greenretrofitguide.com/tools/'+m[3]+'/" style="color:#04a8d0">Calculate it &rarr;</a></div></div>';
+  }
+  if(!html)html='<p>Your home scores well across the board — consider <a href="https://greenretrofitguide.com/tools/solar-panel-roi/" style="color:#04a8d0">solar panels</a> or a <a href="https://greenretrofitguide.com/tools/heat-pump-vs-gas-boiler/" style="color:#04a8d0">heat pump</a> as next steps.</p>';
+  document.getElementById("r-recs").innerHTML=html;
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

@@ -15,8 +15,20 @@ Planned chain start: Tue 2026-10-06 ~08:00 CEST (after German translation chain 
 - [ ] 8. smart-thermostat-savings — Smart Thermostat Savings Estimator
 - [ ] 9. grants-and-subsidies — Grant & Subsidy Finder
 - [ ] 10. green-mortgage-checker — Green Mortgage Checker
+- [ ] 11. cavity-wall-suitability — Cavity Wall Suitability Checker
+- [ ] 12. draught-proofing-savings — Draught-Proofing Savings Calculator
+- [ ] 13. solar-battery-payback — Solar Battery Payback Calculator
+- [ ] 14. heat-pump-ready — Heat Pump Readiness Quiz
+- [ ] 15. cylinder-jacket-savings — Hot Water Cylinder Jacket Calculator
+- [ ] 16. led-savings — LED Lighting Savings Calculator
+- [ ] 17. standby-power-cost — Standby Power Cost Calculator
+- [ ] 18. green-tariff-comparison — Green Tariff Comparison
+- [ ] 19. retrofit-planner — Whole-House Retrofit Planner
+- [ ] 20. epc-improvement — EPC Improvement Estimator
 - [ ] Hub page /tools/
 
 ## Log
 - 2026-10-05: plan approved by Taimoor ("Continue"), UK-first confirmed, BUILD_SPEC.md written, chain scheduled.
 - 2026-10-05: Taimoor: "utilise free time to make more tools" — extended to all 10 tools (Phase 1 + Phase 2).
+- 2026-10-05: division of labour confirmed — Muse builds and commits everything to GitHub; Taimoor handles all uploads to greenretrofitguide.com himself.
+- 2026-10-05: Taimoor: "Start building 20 tools" — extended to 20 tools (Phase 3 added).

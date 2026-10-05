@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heat Pump vs Gas Boiler Calculator | Green Retrofit Guide</title>
+<meta name="description" content="Compare running costs of a heat pump vs your gas boiler — with honest maths on SCOP, tariffs and the Boiler Upgrade Scheme grant. UK calculator.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/heat-pump-vs-gas-boiler/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heat Pump vs Gas Boiler Calculator | Green Retrofit Guide">
+<meta property="og:description" content="Compare running costs of a heat pump vs your gas boiler — with honest maths on SCOP, tariffs and the Boiler Upgrade Scheme grant. UK calculator.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/heat-pump-vs-gas-boiler/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is a heat pump cheaper to run than a gas boiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes — it depends on the electricity-to-gas price ratio and your system's SCOP. At the standard 24p/6p tariff ratio with SCOP 3.2, a heat pump can cost slightly MORE to run than gas. With a heat-pump tariff (~18p) or a well-designed system (SCOP 3.5+), it becomes cheaper. This calculator shows your exact position."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What SCOP should I expect in a UK home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A realistic range is 2.8–4.0. The Energy Systems Catapult and Electrification of Heat trials found averages around 2.8–3.2 for typical installs, with well-designed systems reaching 3.5–4.0. Installer quality and radiator sizing matter more than the heat pump brand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the £7,500 Boiler Upgrade Scheme grant work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your MCS-certified installer applies for a voucher and deducts £7,500 from your bill — you never pay full price and reclaim. It covers England and Wales, owner-occupied and rented properties replacing fossil fuel heating, and requires a valid EPC. Scotland's Home Energy Scotland scheme is separate and more generous."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need new radiators for a heat pump?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often, yes — typically 30–50% of radiators need upsizing because heat pumps run at lower flow temperatures (35–45°C vs a boiler's 60–80°C). A proper room-by-room heat loss calculation determines exactly which ones; budget £1,500–£3,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a heat pump work in an old draughty house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technically yes, financially usually no. Poor fabric forces high flow temperatures, collapsing efficiency and raising bills. Insulate first — loft, walls, draught-proofing — then size the heat pump for the improved house. Our heat pump readiness quiz scores your home."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do heat pumps last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically 20–25 years, versus 10–15 for a gas boiler. Longer life is part of the financial case: spread the extra upfront cost over more years and the annualised cost looks much better."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Heat Pump vs Gas Boiler Calculator | Green Retrofit Guide",
+  "description": "Compare running costs of a heat pump vs your gas boiler — with honest maths on SCOP, tariffs and the Boiler Upgrade Scheme grant. UK calculator.",
+  "url": "https://greenretrofitguide.com/tools/heat-pump-vs-gas-boiler/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>The honest maths behind heat pumps</h2>\n<p>A heat pump does not create heat the way a boiler does — it moves it, harvesting warmth from the outside air (or ground) and concentrating it for your radiators and hot water. That is why its efficiency is quoted not as a percentage but as a SCOP: a Se"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Heat Pump vs Gas Boiler Calculator</nav>
+<h1>Heat Pump vs Gas Boiler Calculator</h1>
+<p class="lead">Will a heat pump actually save you money? Enter your gas bill, tariffs and system details for a no-spin comparison — including the cases where a heat pump costs <em>more</em> to run, because hiding that would be dishonest.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="bill">Annual gas bill (£)</label>
+<input type="number" id="bill" value="900" min="100" max="5000" step="10">
+<span class="hint">Your yearly gas spend — the calculator derives your heating demand from it.</span></div>
+<div class="field"><label for="gasp">Gas tariff (p/kWh)</label>
+<input type="number" id="gasp" value="6" min="2" max="20" step="0.1"></div>
+<div class="field"><label for="elecp">Electricity tariff (p/kWh)</label>
+<input type="number" id="elecp" value="24" min="5" max="60" step="0.5">
+<span class="hint">Heat pump tariffs (e.g. Octopus Cosy) offer cheaper off-peak electricity — try 18p here.</span></div>
+<div class="field"><label for="boileff">Current boiler efficiency (%)</label>
+<input type="number" id="boileff" value="85" min="60" max="98" step="1">
+<span class="hint">Modern condensing combis: ~85–92% in practice. Older non-condensing: ~70–78%.</span></div>
+<div class="field"><label for="scop">Heat pump SCOP (seasonal efficiency)</label>
+<input type="number" id="scop" value="3.2" min="2.5" max="4.5" step="0.1">
+<span class="hint">SCOP 3.2 is a realistic UK average. Well-designed systems reach 3.5–4; poor ones sit near 2.5.</span></div>
+<div class="field"><label for="boilercost">New gas boiler install (£)</label>
+<input type="number" id="boilercost" value="3000" min="1500" max="6000" step="100"></div>
+<div class="field"><label for="hpcost">Heat pump install (£)</label>
+<input type="number" id="hpcost" value="12000" min="5000" max="25000" step="100">
+<span class="hint">Typical UK air-source install: £10k–£14k before the grant.</span></div>
+<div class="field"><label>Boiler Upgrade Scheme grant (£7,500)?</label>
+<div class="radio-row">
+<label><input type="radio" name="bus" value="7500" checked> Yes — I'm eligible</label>
+<label><input type="radio" name="bus" value="0"> No</label>
+</div><span class="hint">England &amp; Wales homeowners replacing fossil-fuel heating. See the guide below.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-saving"></span> <small id="r-saving-label">per year vs gas</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-gas"></div><div class="k">Gas boiler running cost/yr</div></div>
+<div class="stat"><div class="v" id="r-hp"></div><div class="k">Heat pump running cost/yr</div></div>
+<div class="stat"><div class="v" id="r-extra"></div><div class="k">Extra upfront cost</div></div>
+<div class="stat"><div class="v" id="r-payback"></div><div class="k">Payback on extra cost</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO2 saved per year</div></div>
+</div>
+<p style="margin-top:12px;font-size:15px" id="r-verdict"></p>
+</div>
+</section>
+<article class="guide">
+
+<h2>The honest maths behind heat pumps</h2>
+<p>A heat pump does not create heat the way a boiler does — it moves it, harvesting warmth from the outside air (or ground) and concentrating it for your radiators and hot water. That is why its efficiency is quoted not as a percentage but as a SCOP: a Seasonal Coefficient of Performance of 3.2 means that over a whole heating season, each kilowatt-hour of electricity becomes 3.2 kWh of heat. A gas boiler at 85% efficiency turns each kWh of gas into 0.85 kWh of heat. On efficiency alone the heat pump wins by nearly four to one.</p>
+<p>But your bills are not priced in efficiency — they are priced in pence per kWh, and here the UK has an awkward truth. Gas costs roughly 6p per kWh while electricity costs roughly 24p: a 4-to-1 price ratio that almost exactly cancels the heat pump's efficiency advantage. At the default inputs in this calculator (SCOP 3.2, the standard price ratio), a £900 gas bill becomes a £956 heat pump bill — you pay <em>more</em> to run the cleaner system. Many calculators hide this behind optimistic defaults. We surface it, because a decision made on hidden numbers is not a decision at all.</p>
+<p>The way out of the paradox is on both sides of the fraction: cheaper electricity, better SCOP, or both. Dedicated heat-pump tariffs (Octopus Cosy, OVO Heat Pump Plus and similar) price off-peak electricity far below the standard 24p; enter 18p in the electricity field above and watch the verdict change. Meanwhile a well-designed system — correctly sized, with low flow temperatures and decent radiators — achieves SCOP 3.5–4.0 rather than 3.2, which is worth hundreds of pounds a year. Both levers are in your control; the gas/electricity price ratio is the government's.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>SCOP</dt><dd>Seasonal Coefficient of Performance: average heat output per unit of electricity over a heating season. Higher is better; 3.2 is a realistic UK average.</dd>
+<dt>COP</dt><dd>The same ratio measured at one moment. Marketing quotes COP at mild temperatures; SCOP is the honest number.</dd>
+<dt>Flow temperature</dt><dd>The temperature of water the heat pump sends to radiators. Lower (35–45&deg;C) means higher efficiency; old boilers run 60–80&deg;C.</dd>
+<dt>BUS (Boiler Upgrade Scheme)</dt><dd>£7,500 grant for England &amp; Wales homeowners replacing fossil-fuel heating with a heat pump.</dd>
+<dt>kWh of heat demand</dt><dd>The actual warmth your home needs per year. This calculator derives it from your gas bill and boiler efficiency.</dd>
+</dl></div>
+<h2>SCOP: the number that decides everything</h2>
+<p>SCOP is not a fixed property of the box on your wall — it is a property of the whole system, and the installer matters more than the brand. The three biggest drivers are flow temperature, sizing, and controls. Heat pumps are happiest producing lukewarm water (35–45&deg;C) continuously; force one to run at 60&deg;C+ to feed undersized radiators and the SCOP collapses toward 2.5, at which point even cheap electricity struggles to beat gas. Oversized units short-cycle (constantly switching on and off), which also murders efficiency. And weather compensation — the controller adjusting flow temperature to the outdoor temperature automatically — is the single cheapest SCOP booster available.</p>
+<p>What does this mean for quotes? Ask every installer for their <em>designed</em> SCOP and the design flow temperature, in writing. A quote that cannot state a SCOP is a quote from someone who has not done the heat-loss calculation — walk away. The Microgeneration Certification Scheme (MCS) requires a room-by-room heat loss survey for a compliant install; if your survey took twenty minutes and a tape measure, it was theatre. Good design takes hours and produces a document you can keep.</p>
+<h2>Radiators: the upgrade nobody mentions in the advert</h2>
+<p>Here is the conversation most heat pump marketing skips: your radiators were sized for 70&deg;C water from a boiler, and a heat pump wants to run at 40&deg;C. At lower temperatures each radiator gives off less heat, so many homes need larger radiators — typically upsizing 30–50% of them, or adding fan-assisted radiators in key rooms. Budget £1,500–£3,000 for radiator work on top of the heat pump quote if your installer flags it, and be suspicious of any quote that declares your existing radiators "fine" without a room-by-room calculation. Underfloor heating is the ideal partner (huge surface area, very low flow temperature) but is rarely worth retrofitting into an existing home purely for the heat pump. Take our <a href="https://greenretrofitguide.com/tools/heat-pump-ready/">heat pump readiness quiz</a> to see where your home stands before spending anything.</p>
+<h2>The Boiler Upgrade Scheme: £7,500 off</h2>
+<p>The Boiler Upgrade Scheme (BUS) gives England and Wales homeowners £7,500 toward an air-source or ground-source heat pump replacing fossil-fuel heating (oil, gas, LPG, or direct electric). Your installer applies for the voucher and discounts your bill — you should never be asked to pay full price and "claim it back". Key conditions: you must own the property (including landlords), it must have a valid EPC with no outstanding loft or cavity wall insulation recommendations, the install must be MCS-certified, and new-builds are excluded. The grant has been extended and the budget is real, but apply through your installer early — vouchers are issued per installation and the paperwork takes weeks. Scotland has its own, more generous scheme (Home Energy Scotland: up to £7,500 grant plus £7,500 interest-free loan) — our <a href="https://greenretrofitguide.com/tools/grants-and-subsidies/">grant finder</a> covers all four nations.</p>
+<h2>When a heat pump does NOT pay</h2>
+<p>Say it plainly: do not install a heat pump in a leaky home. If your walls are uninsulated, your loft is bare, and your windows are single-glazed, a heat pump will run constantly at high flow temperatures, achieve a miserable SCOP, and cost you more than the boiler it replaced — while the installer blames your house. The correct order is fabric first: <a href="https://greenretrofitguide.com/tools/insulation-savings/">insulation</a>, <a href="https://greenretrofitguide.com/tools/draught-proofing-savings/">draught-proofing</a>, and <a href="https://greenretrofitguide.com/tools/home-energy-audit/">an honest audit</a> of where you stand. Also think twice if you have no outdoor space for the unit (they need airflow and make a low hum — check permitted development noise limits with neighbours close by), if your electricity supply needs an expensive upgrade, or if you plan to move within a few years: the payback needs you to stay put.</p>
+<h2>Carbon: the argument that survives the maths</h2>
+<p>Even when the money is marginal, the carbon case is not. Grid electricity keeps getting cleaner as renewables grow, so a heat pump installed today gets greener every year it runs; a gas boiler locks in 0.21 kg of CO2 per kWh for its entire 15-year life. At the default inputs above, switching saves roughly 2.3 tonnes of CO2 a year — about a quarter of the average UK household's total footprint. If your motivation is climate rather than cash, the calculator's CO2 figure is the number to watch, and pairing the pump with <a href="https://greenretrofitguide.com/tools/solar-panel-roi/">solar panels</a> (daytime electricity for a daytime-running pump) is the strongest combination a UK home can currently buy.</p>
+<h2>Running costs in practice: the tariff trick</h2>
+<p>The single highest-value action after installation is switching to a heat-pump-friendly tariff. Standard variable tariffs charge a flat ~24p all day; heat pump tariffs offer cheap overnight and shoulder-period rates, and because a well-insulated home with a pump can pre-heat during cheap hours, real-world savings of £200–£400 a year versus the standard tariff are common. Set a calendar reminder to re-check tariffs every year — the market moves, and loyalty is priced accordingly. Also consider: every degree you lower your flow temperature saves roughly 2–3% on running costs, so the annual service should include a review of the weather-compensation curve, not just a filter clean.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>Is a heat pump cheaper to run than a gas boiler?</summary><p>Sometimes — it depends on the electricity-to-gas price ratio and your system's SCOP. At the standard 24p/6p tariff ratio with SCOP 3.2, a heat pump can cost slightly MORE to run than gas. With a heat-pump tariff (~18p) or a well-designed system (SCOP 3.5+), it becomes cheaper. This calculator shows your exact position.</p></details>
+<details><summary>What SCOP should I expect in a UK home?</summary><p>A realistic range is 2.8–4.0. The Energy Systems Catapult and Electrification of Heat trials found averages around 2.8–3.2 for typical installs, with well-designed systems reaching 3.5–4.0. Installer quality and radiator sizing matter more than the heat pump brand.</p></details>
+<details><summary>How does the £7,500 Boiler Upgrade Scheme grant work?</summary><p>Your MCS-certified installer applies for a voucher and deducts £7,500 from your bill — you never pay full price and reclaim. It covers England and Wales, owner-occupied and rented properties replacing fossil fuel heating, and requires a valid EPC. Scotland's Home Energy Scotland scheme is separate and more generous.</p></details>
+<details><summary>Do I need new radiators for a heat pump?</summary><p>Often, yes — typically 30–50% of radiators need upsizing because heat pumps run at lower flow temperatures (35–45°C vs a boiler's 60–80°C). A proper room-by-room heat loss calculation determines exactly which ones; budget £1,500–£3,000.</p></details>
+<details><summary>Can a heat pump work in an old draughty house?</summary><p>Technically yes, financially usually no. Poor fabric forces high flow temperatures, collapsing efficiency and raising bills. Insulate first — loft, walls, draught-proofing — then size the heat pump for the improved house. Our heat pump readiness quiz scores your home.</p></details>
+<details><summary>How long do heat pumps last?</summary><p>Typically 20–25 years, versus 10–15 for a gas boiler. Longer life is part of the financial case: spread the extra upfront cost over more years and the annualised cost looks much better.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/air-source-heat-pumps/">Air source heat pumps: advice</a></li>
+<li>Gov.uk — <a href="https://www.gov.uk/apply-boiler-upgrade-scheme">Apply for the Boiler Upgrade Scheme</a></li>
+<li>MCS — <a href="https://mcscertified.com/">Find an MCS-certified heat pump installer</a></li>
+<li>Energy Systems Catapult — Electrification of Heat demonstration findings</li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+Math.round(x).toLocaleString("en-GB");}
+function calculate(){
+  var bill=num("bill"), gasP=num("gasp"), elecP=num("elecp"), beff=num("boileff");
+  var scop=num("scop"), boilerCost=num("boilercost"), hpCost=num("hpcost");
+  var bus=0; var radios=document.getElementsByName("bus");
+  for(var i=0;i<radios.length;i++){if(radios[i].checked){bus=parseFloat(radios[i].value);}}
+  var demand = bill*100/gasP * beff/100;               // kWh of heat delivered
+  var gasAnnual = demand/(beff/100)*gasP/100;          // should equal bill
+  var hpAnnual = demand/scop*elecP/100;
+  var saving = gasAnnual-hpAnnual;
+  var netHp = hpCost-bus;
+  var extra = netHp-boilerCost;
+  var payback = saving>0 && extra>0 ? extra/saving : 0;
+  var gasCo2 = demand/(beff/100)*0.21/1000;
+  var hpCo2 = demand/scop*0.207/1000;
+  document.getElementById("r-saving").textContent = (saving>=0?"":"\u2212")+money(Math.abs(saving));
+  document.getElementById("r-saving-label").textContent = saving>=0 ? "saved per year vs gas" : "MORE per year vs gas";
+  document.getElementById("r-gas").textContent = money(gasAnnual);
+  document.getElementById("r-hp").textContent = money(hpAnnual);
+  document.getElementById("r-extra").textContent = (extra>=0?"":"\u2212")+money(Math.abs(extra));
+  document.getElementById("r-payback").textContent = payback>0 ? payback.toFixed(1)+" yrs" : (saving<=0 ? "never" : "immediate");
+  document.getElementById("r-co2").textContent = (gasCo2-hpCo2).toFixed(2)+" t";
+  var verdict=document.getElementById("r-verdict");
+  if(saving<0){
+    verdict.innerHTML="<strong>Honest verdict:</strong> at these tariffs the heat pump costs <strong>"+money(-saving)+
+    " MORE per year to run than your gas boiler</strong> — the 24p/6p electricity-to-gas price ratio beats the efficiency gain. "+
+    "This is not a failure of heat pumps; it is a failure of UK energy pricing. A cheaper heat-pump electricity tariff (try 18p above) "+
+    "or a higher SCOP changes the picture. Read the guide below before deciding.";
+  } else if(payback>0 && payback<15){
+    verdict.innerHTML="<strong>Honest verdict:</strong> the heat pump saves "+money(saving)+
+    "/yr and the extra upfront cost pays back in ~"+payback.toFixed(1)+" years. A reasonable investment if your home is heat-pump ready.";
+  } else {
+    verdict.innerHTML="<strong>Honest verdict:</strong> running-cost savings are modest at these settings. The carbon saving is real ("+
+    (gasCo2-hpCo2).toFixed(2)+" t/yr), but on pure money the case is weak — improve the inputs (better SCOP, cheaper tariff) or prioritise fabric upgrades first.";
+  }
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

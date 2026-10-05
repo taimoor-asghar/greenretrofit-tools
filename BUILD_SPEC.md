@@ -6,7 +6,18 @@ Target site: https://greenretrofitguide.com/ | Market: UK | Created 2026-10-05
 - Maths verified against hand-computed known answers before ship. Record the test cases in PROGRESS.md.
 - 1200+ words of substantive guide prose per page + FAQPage schema + MedicalWebPage-style E-E-A-T adapted: author box (Taimoor), reviewed date, references to real sources (Energy Saving Trust, MCS, gov.uk, Energy Saving Trust figures).
 - One H1, meta title/description, canonical https://greenretrofitguide.com/tools/<slug>/, OG tags, mobile-responsive, accessible labels.
-- Design: clean light theme, green accent (#1a7a4a), ink-navy text. Match the doctorwithdata tool aesthetic (single-column, card inputs, big result panel).
+- Single-column layout: card inputs, big result panel, styled per the Design system above.
+
+## Design system — match the live site theme
+The site runs the **Azure Blogger** WordPress theme (child of Azure News). All tools must look native to it:
+- Primary/accent: **#04a8d0** (azure blue — the theme's brand color) for buttons, result highlights, links, active states.
+- Body font: **"Nunito", sans-serif** (Google Fonts). Headings: **"Arvo", serif** (Google Fonts).
+- Text: #353535 body, #737373 muted. Backgrounds: #ffffff cards on #f7f8f9 page.
+- Cards: white, subtle border #e1e1e1, small radius (theme uses ~4px), soft shadow.
+- Buttons: solid #04a8d0, white text, Nunito 600.
+- Inputs: bordered #e1e1e1, focus ring #04a8d0.
+- Result panel: light azure tint background (#e8f7fc) with #04a8d0 left border, big figure in Arvo.
+- The tools are standalone static HTML (Taimoor uploads them); load Nunito + Arvo from Google Fonts so they render identically with or without the WP theme present. Do NOT use the old green (#1a7a4a) direction.
 
 ## URL structure
 - Hub: https://greenretrofitguide.com/tools/

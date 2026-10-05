@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standby Power Cost Calculator | Green Retrofit Guide</title>
+<meta name="description" content="How much does standby power cost you? Tally every device left on standby, see the annual £ cost and CO₂, and rank them by what to switch off first.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/standby-power-cost/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Standby Power Cost Calculator | Green Retrofit Guide">
+<meta property="og:description" content="How much does standby power cost you? Tally every device left on standby, see the annual £ cost and CO₂, and rank them by what to switch off first.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/standby-power-cost/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does standby power cost the average UK home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically £40-£70 a year, and over £100 in homes with games consoles and older set-top boxes. The four-device example above (TV, set-top box, console, printer at 20h/day standby) wastes £43.80 a year at 24p/kWh."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which device wastes the most on standby?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Games consoles in instant-on mode (10-15W) and older set-top boxes (~8W) are the worst. A console left in instant-on 20 hours a day costs about £17.50 a year just to boot faster."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I switch my TV off at the wall every night?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — it is completely safe for modern TVs, and the 3W standby (£6.30/year) disappears. Use a switched power strip so one flick kills the TV, console, box and soundbar together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to switch everything off at the wall?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Never isolate the fridge/freezer, boiler, medical devices, stairlifts or alarms. Routers are best left on (repeated drops can slow some broadband lines). Check the 'never switch off' list in the guide above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do smart plugs actually save money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only where they displace real standby load. A smart plug draws ~1W (£2.10/yr) itself, so one killing 25W of entertainment standby nets ~£42/yr — but ten plugs on 1W chargers just add cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does leaving a phone charger plugged in waste much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 0.5W, roughly £1 a year. Unplug it anyway — the habit is free and a warm charger brick is a small fire risk — but do not expect it to move your bill."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Standby Power Cost Calculator | Green Retrofit Guide",
+  "description": "How much does standby power cost you? Tally every device left on standby, see the annual £ cost and CO₂, and rank them by what to switch off first.",
+  "url": "https://greenretrofitguide.com/tools/standby-power-cost/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>The £43.80 question</h2>\n<p>Take four utterly ordinary devices — a TV (3W on standby), a set-top box (8W), a games console (10W) and a printer (4W). None of them is doing anything. Add them up: 25 watts, sitting there doing nothing, 20 hours a day. The maths is unforgiving: 25 × 20 × 365 ÷ 1,00"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Standby Power Cost Calculator</nav>
+<h1>Standby Power Cost Calculator</h1>
+<p class="lead">Four devices on standby — TV, set-top box, games console, printer — waste £43.80 a year. Tick yours and see your home's standby bill.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label>Devices left on standby</label>
+<div class="checks"><label><input type="checkbox" class="dev" data-w="3" data-name="TV" checked> TV <span class="hint" style="display:inline">(3 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="8" data-name="Set-top box / streamer" checked> Set-top box / streamer <span class="hint" style="display:inline">(8 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="10" data-name="Games console" checked> Games console <span class="hint" style="display:inline">(10 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="4" data-name="Printer / scanner" checked> Printer / scanner <span class="hint" style="display:inline">(4 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="3" data-name="Microwave (clock display)" checked> Microwave (clock display) <span class="hint" style="display:inline">(3 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="0.5" data-name="Phone charger (plugged in)" checked> Phone charger (plugged in) <span class="hint" style="display:inline">(0.5 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="2" data-name="Laptop charger (plugged in)" checked> Laptop charger (plugged in) <span class="hint" style="display:inline">(2 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="5" data-name="Desktop PC (sleep, not off)" checked> Desktop PC (sleep, not off) <span class="hint" style="display:inline">(5 W)</span></label>
+<label><input type="checkbox" class="dev" data-w="3" data-name="Smart speaker" checked> Smart speaker <span class="hint" style="display:inline">(3 W)</span></label></div></div>
+<div class="field"><label for="hours">Hours per day on standby (average)</label>
+<input type="number" id="hours" value="20" min="1" max="24" step="0.5">
+<span class="hint">20 hours is typical: the device is "used" 4 hours and sits idle the other 20.</span></div>
+<div class="field"><label for="tariff">Electricity tariff (p/kWh)</label>
+<input type="number" id="tariff" value="24" min="5" max="60" step="0.5"></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-cost"></span> <small>wasted per year</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-kwh"></div><div class="k">kWh wasted / year</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ / year</div></div>
+<div class="stat"><div class="v" id="r-day"></div><div class="k">Wasted per day</div></div>
+</div>
+<div class="note" style="margin-top:16px"><strong>Switch-off ranking (biggest wasters first):</strong><ol id="r-rank" style="margin:8px 0 0 20px"></ol></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>The £43.80 question</h2>
+<p>Take four utterly ordinary devices — a TV (3W on standby), a set-top box (8W), a games console (10W) and a printer (4W). None of them is doing anything. Add them up: 25 watts, sitting there doing nothing, 20 hours a day. The maths is unforgiving: 25 × 20 × 365 ÷ 1,000 = 182.5 kWh a year, and at 24p per kWh that is £43.80 — every single year — for literally nothing. No light, no heat, no entertainment. That is the number this calculator exists to make visible, because standby waste is invisible by design: it never appears on a bill as a line item, it just silently inflates the total.</p>
+<p>Scale it to the whole house and the typical British home wastes £40–£70 a year on standby, with games-console households often north of £100. The Energy Saving Trust has long estimated that standby and "always-on" consumption accounts for roughly 9–16% of domestic electricity. It will never be the biggest line in your retrofit plan — insulation and heating dwarf it — but it is the cheapest saving on this site to capture: the payback on switching something off at the wall is instant, the cost is zero, and the habit compounds across every device you own.</p>
+<h2>The biggest standby offenders, ranked</h2>
+<p>Not all standby is equal. The figures baked into this calculator are typical measured values, and the ranking matters more than the total — it tells you where the effort goes first:</p>
+<ul>
+<li><strong>Games consoles (10W):</strong> the standby champions nobody suspects. A console in "instant-on" mode can draw 10–15W around the clock so it can wake in seconds. Over 20 idle hours a day that is 73 kWh a year — £17.50 — for the privilege of skipping a 30-second boot. Switch instant-on off in the console's power settings (or the console off at the wall) and the standby draw collapses to under 1W.</li>
+<li><strong>Set-top boxes and streamers (8W):</strong> the old offender. Some boxes never truly sleep; they keep tuners, hard drives and network connections alive. If yours runs warm to the touch when "off", it is not off. A smart plug on a schedule — on for the evening, off overnight — fixes it without touching a cable.</li>
+<li><strong>Desktop PCs left in sleep (5W):</strong> sleep is not off. A desktop in sleep still draws 4–6W; hibernate draws ~1W and full shutdown ~0.5W. If the machine sits unused 20 hours a day, hibernate instead of sleep and pocket the difference.</li>
+<li><strong>Printers (4W), microwaves (3W), TVs (3W), smart speakers (3W):</strong> the long tail. Each is small; together they add up. The microwave's clock display costs about £6.30 a year — a clock you already have on your phone, paid for in electricity.</li>
+<li><strong>Laptop chargers (2W) and phone chargers (0.5W):</strong> genuinely trivial — a phone charger left plugged in costs about £1.05 a year. Unplug them anyway, not for the money but because a warm charger brick is a (very small) fire risk and the habit is free.</li>
+</ul>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>Standby power</dt><dd>Electricity a device draws while "off" but still plugged in and able to wake — typically 0.5–15W.</dd>
+<dt>Vampire load</dt><dd>The informal name for standby waste: power consumed by devices doing nothing useful.</dd>
+<dt>kWh (kilowatt-hour)</dt><dd>The unit on your bill. 1 kWh = running a 1,000W appliance for one hour. Standby maths is watts × hours ÷ 1,000.</dd>
+<dt>Smart plug</dt><dd>A plug with a timer/app switch that cuts power to a device (or a group) on a schedule — the lazy person's off-switch.</dd>
+</dl></div>
+<h2>What you must never switch off</h2>
+<p>Before you go round flicking switches, the safety list — because some things are "on" for a reason:</p>
+<ul>
+<li><strong>Fridge and freezer:</strong> never. The food-safety risk dwarfs any saving, and the compressor cycling will just work harder afterwards.</li>
+<li><strong>Boiler and heating controls:</strong> modern boilers run frost protection and pump overrun cycles; isolating them can void warranties and, in a cold snap, burst pipes.</li>
+<li><strong>Broadband router:</strong> switching it off nightly saves ~£10 a year but can destabilise some lines (the exchange may interpret repeated drops as a faulty line and slow your speed) and kills anything that needs the network overnight — alarms, smart heating, security cameras.</li>
+<li><strong>Anything with a hard drive recording schedule</strong> (some set-top boxes) if you actually use the recordings — check the box's own eco settings instead.</li>
+<li><strong>Medical devices, stairlifts, alarms, and anything someone depends on.</strong> Obviously — but say it once, clearly.</li>
+<li><strong>Sky Q and similar:</strong> these download updates overnight; fully isolating them can mean missed recordings and long re-syncs. Use the box's built-in eco standby instead.</li>
+</ul>
+<h2>The practical system: smart plugs and power strips</h2>
+<p>Nobody sustains a nightly crawl behind the TV unit. The winning setup is a <strong>switched power strip or smart plug</strong> on the entertainment stack: TV, console, set-top box, soundbar and chargers all on one strip, one switch by the sofa, off at bedtime. A smart plug (£10–£15) adds scheduling — on at 6pm, off at midnight — so you never think about it again. The honest accounting: a smart plug itself draws about 1W (£2.10 a year), so only deploy them where they displace real standby load. One smart plug killing 25W of entertainment standby nets you £41.70 a year after its own consumption — payback in about four months. Ten smart plugs scattered around killing 1W chargers is just gadget theatre.</p>
+<p>For the desk, the same logic: PC, monitor, printer and desk lamp on one strip, switched off with the working day. For the kitchen: the microwave, kettle base (some have lit switches) and coffee machine on a strip you flick after breakfast. The pattern is always the same — <strong>group the standby, switch the group, automate the switch</strong>. Three strips and two smart plugs cover most homes for under £50, and the calculator above will tell you exactly what that £50 buys back each year.</p>
+<h2>Beyond standby: the always-on audit</h2>
+<p>Standby is only half the "invisible load" story. The other half is devices that are legitimately on but doing nothing: the second fridge in the garage humming away half-empty (£60–£100 a year to run), the old plasma TV still in the spare room, the heated towel rail on 24/7 in summer, the outdoor security light burning dusk-to-dawn instead of on a PIR sensor. Do a proper always-on walk-round once a year: stand at the meter, switch everything you can off, and watch the background draw. A typical home idles at 100–300W with "everything off"; if yours sits at 500W+, something is eating electricity around the clock and the meter will tell you what the bills never itemise.</p>
+<p>And the deepest cut of all is behavioural, not electrical: standby waste is a symptom of devices that default to "ready" instead of "off". When you buy replacements, check the standby rating (EU rules cap most devices at 0.5W standby, but consoles and boxes with network standby get higher allowances — read the spec sheet). Buy the 0.5W TV over the 3W one and the saving is locked in for the decade you own it, no willpower required.</p>
+<h2>Where standby sits in your retrofit plan</h2>
+<p>Be honest about scale: killing all standby might save £50 a year, while loft insulation saves £300 and a heat pump decision moves thousands. Standby belongs in <strong>Phase A — the quick wins</strong> of a whole-house plan (see the Retrofit Planner): zero-cost, instant-payback measures you do this weekend while the bigger projects go through quotes and installers. It also has a psychological function the big measures lack — it makes energy visible. The household that starts switching off at the wall is the household that notices the thermostat setting, the draught under the door, the radiator heating an empty room. Small wins train the attention that the big wins need.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How much does standby power cost the average UK home?</summary><p>Typically £40-£70 a year, and over £100 in homes with games consoles and older set-top boxes. The four-device example above (TV, set-top box, console, printer at 20h/day standby) wastes £43.80 a year at 24p/kWh.</p></details>
+<details><summary>Which device wastes the most on standby?</summary><p>Games consoles in instant-on mode (10-15W) and older set-top boxes (~8W) are the worst. A console left in instant-on 20 hours a day costs about £17.50 a year just to boot faster.</p></details>
+<details><summary>Should I switch my TV off at the wall every night?</summary><p>Yes — it is completely safe for modern TVs, and the 3W standby (£6.30/year) disappears. Use a switched power strip so one flick kills the TV, console, box and soundbar together.</p></details>
+<details><summary>Is it safe to switch everything off at the wall?</summary><p>No. Never isolate the fridge/freezer, boiler, medical devices, stairlifts or alarms. Routers are best left on (repeated drops can slow some broadband lines). Check the 'never switch off' list in the guide above.</p></details>
+<details><summary>Do smart plugs actually save money?</summary><p>Only where they displace real standby load. A smart plug draws ~1W (£2.10/yr) itself, so one killing 25W of entertainment standby nets ~£42/yr — but ten plugs on 1W chargers just add cost.</p></details>
+<details><summary>Does leaving a phone charger plugged in waste much?</summary><p>About 0.5W, roughly £1 a year. Unplug it anyway — the habit is free and a warm charger brick is a small fire risk — but do not expect it to move your bill.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/saving-energy-at-home/">Saving energy at home</a></li>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/quick-wins-to-save-energy/">Quick wins to save energy</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var hours=num("hours"), tariffP=num("tariff");
+  var devs=[], totalW=0;
+  document.querySelectorAll(".dev").forEach(function(cb){
+    if(cb.checked){
+      var w=parseFloat(cb.getAttribute("data-w"));
+      totalW+=w;
+      devs.push({name:cb.getAttribute("data-name"), w:w,
+        kwh:w*hours*365/1000});
+    }
+  });
+  var kwh=totalW*hours*365/1000;
+  var cost=kwh*tariffP/100;
+  var co2=kwh*0.207/1000;
+  document.getElementById("r-cost").textContent=money2(cost);
+  document.getElementById("r-kwh").textContent=Math.round(kwh).toLocaleString()+" kWh";
+  document.getElementById("r-co2").textContent=co2.toFixed(2)+" t";
+  document.getElementById("r-day").textContent=money2(cost/365);
+  devs.sort(function(a,b){return b.kwh-a.kwh;});
+  var rank=document.getElementById("r-rank"); rank.innerHTML="";
+  devs.forEach(function(d){
+    var li=document.createElement("li");
+    li.textContent=d.name+" \u2014 "+money2(d.kwh*tariffP/100)+"/yr ("+Math.round(d.kwh)+" kWh)";
+    rank.appendChild(li);
+  });
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

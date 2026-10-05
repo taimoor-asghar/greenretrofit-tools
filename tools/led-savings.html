@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LED Lighting Savings Calculator | Green Retrofit Guide</title>
+<meta name="description" content="How much do LED bulbs really save? Calculate the payback of swapping halogens for LEDs — bulb by bulb, with lumens, colour temperature and dimmer advice.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/led-savings/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LED Lighting Savings Calculator | Green Retrofit Guide">
+<meta property="og:description" content="How much do LED bulbs really save? Calculate the payback of swapping halogens for LEDs — bulb by bulb, with lumens, colour temperature and dimmer advice.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/led-savings/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much do LED bulbs save versus halogen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly 85-90% of lighting energy. Twenty 50W halogens swapped for 6W LEDs (3 hrs/day) saves ~964 kWh/year — about £231 at 24p/kWh — for an £80 outlay. Payback is around 4 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What lumens replace a 50W halogen spotlight?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 400-550 lumens at a wide beam angle. In general: 400-500 lm replaces 40W incandescent, 700-800 lm replaces 60W. Always match lumens, not watts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do my LED bulbs flicker on the dimmer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Old leading-edge dimmers need a minimum load (often 200W+) that a few 6W LEDs cannot provide. Fit an LED-compatible trailing-edge dimmer (£15-£25) and use dimmable-rated LEDs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What colour temperature should I buy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2700K warm white for living rooms and bedrooms (the cosy incandescent glow), 3000K for kitchens/bathrooms, 4000K+ only for workspaces. 6000K 'daylight' in a living room looks like a motorway service station."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I dispose of old bulbs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Halogens: general waste. CFLs: hazardous waste (they contain mercury) — bag and take to council collection. LEDs at end of life: electronic waste recycling point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do LEDs really last 25,000 hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quality branded LEDs do — 15,000-25,000 hours is typical, or 13-22 years at 3 hours/day. Cheap unbranded bulbs may fall short; buy from established brands for the rooms you use most."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LED Lighting Savings Calculator | Green Retrofit Guide",
+  "description": "How much do LED bulbs really save? Calculate the payback of swapping halogens for LEDs — bulb by bulb, with lumens, colour temperature and dimmer advice.",
+  "url": "https://greenretrofitguide.com/tools/led-savings/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>The maths that sells itself</h2>\n<p>Twenty 50W halogen downlights running three hours a day consume 1,095 kWh a year. Swap each for a 6W LED and consumption falls to 131 kWh — a saving of 964 kWh, worth £231 at 24p per kWh, against a bulb cost of £80. Payback: 0.35 years, about four months. The"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; LED Lighting Savings Calculator</nav>
+<h1>LED Lighting Savings Calculator</h1>
+<p class="lead">Swapping twenty 50W halogens for 6W LEDs saves over £230 a year — payback in about four months. Enter your bulbs for your exact saving.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="bulbs">Number of bulbs to replace</label>
+<input type="number" id="bulbs" value="20" min="1" max="200"></div>
+<div class="field"><label for="oldw">Old bulb wattage (W)</label>
+<input type="number" id="oldw" value="50" min="10" max="150" step="1">
+<span class="hint">Halogen spotlights are usually 35W or 50W; old incandescents 40–100W.</span></div>
+<div class="field"><label for="neww">New LED wattage (W)</label>
+<input type="number" id="neww" value="6" min="2" max="20" step="0.5">
+<span class="hint">A 6W LED ≈ a 50W halogen in brightness. Match lumens, not watts (see guide).</span></div>
+<div class="field"><label for="hours">Hours used per day (average)</label>
+<input type="number" id="hours" value="3" min="0.5" max="24" step="0.5"></div>
+<div class="field"><label for="tariff">Electricity tariff (p/kWh)</label>
+<input type="number" id="tariff" value="24" min="5" max="60" step="0.5"></div>
+<div class="field"><label for="ledcost">LED cost each (£)</label>
+<input type="number" id="ledcost" value="4" min="1" max="20" step="0.5"></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-payback"></span> <small>payback</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-kwh"></div><div class="k">kWh saved / year</div></div>
+<div class="stat"><div class="v" id="r-save"></div><div class="k">Saved / year</div></div>
+<div class="stat"><div class="v" id="r-cost"></div><div class="k">Bulb cost</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ cut / year</div></div>
+</div>
+<div class="note" style="margin-top:16px"><strong>Verdict:</strong> <span id="r-verdict"></span></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>The maths that sells itself</h2>
+<p>Twenty 50W halogen downlights running three hours a day consume 1,095 kWh a year. Swap each for a 6W LED and consumption falls to 131 kWh — a saving of 964 kWh, worth £231 at 24p per kWh, against a bulb cost of £80. Payback: 0.35 years, about four months. Then the LEDs keep saving £231 a year for their 15,000–25,000-hour life — 15+ years at three hours a day. Few purchases in the home return 290% in year one; a bag of LED bulbs is one of them. The test case above is not optimistic — it is the standard British kitchen-and-hallway of halogen downlights, and millions of homes still have them.</p>
+<p>Why the saving is so large: halogen bulbs are electric heaters that happen to emit light — roughly 90% of their energy becomes heat, 10% light. LEDs invert the ratio. And unlike every other measure on this site, the "installation" is screwing in a bulb. There is no survey, no scaffolding, no installer, no planning permission. If any retrofit deserves the word "no-brainer", it is this one.</p>
+<h2>Lumens, not watts: how to buy the right LED</h2>
+<p>Stop shopping by watts — watts measure energy in, not light out. Shop by <strong>lumens</strong>: 400–500 lumens replaces a 40W incandescent, 700–800 replaces 60W, and 400–550 lumens at a wide beam angle replaces a 50W halogen spotlight (spotlights need fewer lumens than the headline suggests because the light is directed). The packaging shows both; match the lumens of the bulb you are replacing and you will not notice the difference — except on the bill.</p>
+<p><strong>Colour temperature</strong> is the second number that matters, measured in kelvin: 2700K is warm white (the cosy incandescent glow — right for living rooms and bedrooms), 3000K is slightly crisper (kitchens, bathrooms), 4000K+ is cool/daylight (offices, garages, anywhere you work). The great LED mistake is buying 6000K "daylight" bulbs for a living room and living under motorway-services lighting. Buy 2700K for anywhere you relax. <strong>CRI</strong> (colour rendering index) is the third: 80+ is fine, 90+ makes colours — food, skin, paint — look natural. Cheap unbranded LEDs sometimes skimp here; the difference is visible.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>Lumen (lm)</dt><dd>Light output. Buy by lumens: ~800 lm ≈ old 60W bulb, ~450 lm ≈ 50W halogen spot.</dd>
+<dt>Kelvin (K)</dt><dd>Colour temperature. 2700K = warm white (living areas), 4000K+ = cool (workspaces).</dd>
+<dt>CRI</dt><dd>Colour Rendering Index — how natural colours look. 80+ good, 90+ excellent.</dd>
+<dt>Dimmable LED</dt><dd>An LED designed for dimmer circuits — must be paired with an LED-compatible dimmer switch.</dd>
+</dl></div>
+<h2>Dimmers: the compatibility trap</h2>
+<p>The number-one LED complaint — flickering, buzzing, or refusing to dim low — is a dimmer problem, not a bulb problem. Old leading-edge dimmers were designed for 200W+ of incandescent load; a circuit of six 6W LEDs presents 36W, below the dimmer's minimum, and the electronics misbehave. The fix is an <strong>LED-compatible trailing-edge dimmer</strong> (£15–£25, a 20-minute swap for anyone comfortable with basic electrics — mains off), plus dimmable-rated LED bulbs. Check the bulb manufacturer's dimmer compatibility list if you want certainty; the major brands publish them. Non-dimmable LEDs on a dimmer circuit will fail early and flicker — match the bulb to the circuit or bypass the dimmer.</p>
+<h2>Where the remaining halogens hide</h2>
+<p>By 2026 most UK homes have converted the easy bulbs, but halogens persist in predictable places: <strong>kitchen downlights</strong> (the 50W GU10 army — the single biggest remaining prize, often 10–20 bulbs in one room), <strong>bathroom spots</strong> (frequently left because "they're only on briefly" — but there are often six of them), <strong>outdoor floodlights</strong> (500W halogen security lights are still common and outrageous — a 30W LED floodlight replaces one, saving £100+ a year if it triggers nightly), and <strong>oven and cooker-hood bulbs</strong> (special high-temperature types; replace like-for-like when they blow). Do a walk-round with the calculator: count every non-LED, enter the totals, and let the payback — usually months — motivate the ladder work.</p>
+<h3>The heat-replacement footnote (for the thorough)</h3>
+<p>Pedants — correctly — note that halogen waste heat slightly warms the house in winter, so some of the "saving" is offset by the heating working harder. The effect is real but small: even in winter, only a fraction of bulb heat usefully displaces heating (much of it rises to the ceiling or heats empty rooms), and for half the year the heat is pure waste. The calculator does not deduct it, which overstates winter savings by perhaps 10–20% for heating-season hours — nowhere near enough to change the verdict. In summer, the waste heat is an active penalty: halogens make hot rooms hotter.</p>
+<h2>Disposal and the long life</h2>
+<p>LEDs last 15,000–25,000 hours — at three hours a day, 13–22 years. You will likely move house before you replace them, which makes the "£4 each" objection look silly spread over a decade. When they do die, they are electronic waste: take them to the council recycling point or the retailer's take-back scheme, not the general bin (they contain small amounts of electronics and, in some drivers, capacitors). The old halogens and CFLs you remove: halogens go in general waste (they are just glass and filament), but <strong>CFLs contain mercury</strong> — bag them and take them to hazardous-waste collection. Do not smash a CFL indoors; ventilate the room if you do.</p>
+<h2>Smart bulbs: worth it?</h2>
+<p>Smart bulbs (£10–£25 each versus £4 for a plain LED) add app/voice control, scheduling, and colour. The energy case is nil — a plain LED is already 90% efficient; no app improves on that. The case is convenience and behaviour: scheduled "away" lighting for security, or motion-sensor control ensuring lights are never left on. For most homes, the winning combination is plain LEDs everywhere plus smart control only where it changes behaviour — a motion sensor on the hallway, a schedule on outdoor lights. Do not pay a 4x premium per bulb for features you will use twice.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How much do LED bulbs save versus halogen?</summary><p>Roughly 85-90% of lighting energy. Twenty 50W halogens swapped for 6W LEDs (3 hrs/day) saves ~964 kWh/year — about £231 at 24p/kWh — for an £80 outlay. Payback is around 4 months.</p></details>
+<details><summary>What lumens replace a 50W halogen spotlight?</summary><p>About 400-550 lumens at a wide beam angle. In general: 400-500 lm replaces 40W incandescent, 700-800 lm replaces 60W. Always match lumens, not watts.</p></details>
+<details><summary>Why do my LED bulbs flicker on the dimmer?</summary><p>Old leading-edge dimmers need a minimum load (often 200W+) that a few 6W LEDs cannot provide. Fit an LED-compatible trailing-edge dimmer (£15-£25) and use dimmable-rated LEDs.</p></details>
+<details><summary>What colour temperature should I buy?</summary><p>2700K warm white for living rooms and bedrooms (the cosy incandescent glow), 3000K for kitchens/bathrooms, 4000K+ only for workspaces. 6000K 'daylight' in a living room looks like a motorway service station.</p></details>
+<details><summary>How do I dispose of old bulbs?</summary><p>Halogens: general waste. CFLs: hazardous waste (they contain mercury) — bag and take to council collection. LEDs at end of life: electronic waste recycling point.</p></details>
+<details><summary>Do LEDs really last 25,000 hours?</summary><p>Quality branded LEDs do — 15,000-25,000 hours is typical, or 13-22 years at 3 hours/day. Cheap unbranded bulbs may fall short; buy from established brands for the rooms you use most.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/lighting/">Energy-efficient lighting advice</a></li>
+<li>Which? — <a href="https://www.which.co.uk/">LED bulb reviews and Best Buys</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var n=num("bulbs"), oldW=num("oldw"), newW=num("neww"), hrs=num("hours");
+  var tariffP=num("tariff"), ledC=num("ledcost");
+  var kwSaved=n*(oldW-newW)/1000;
+  var kwhYear=kwSaved*hrs*365;
+  var saving=kwhYear*tariffP/100;
+  var cost=n*ledC;
+  var payback=saving>0?cost/saving:0;
+  var co2=kwhYear*0.207/1000;
+  var pb=payback>0?(payback<1?Math.round(payback*12)+" months":payback.toFixed(1)+" yrs"):"\u2014";
+  document.getElementById("r-payback").textContent=pb;
+  document.getElementById("r-kwh").textContent=Math.round(kwhYear).toLocaleString()+" kWh";
+  document.getElementById("r-save").textContent=money(Math.round(saving))+"/yr";
+  document.getElementById("r-cost").textContent=money(cost);
+  document.getElementById("r-co2").textContent=co2.toFixed(2)+" t";
+  document.getElementById("r-verdict").textContent=
+    payback<1 ? "One of the fastest paybacks in the home: under a year, then £"+Math.round(saving)+" back every year for the 15+ year life of the LEDs."
+    : "Still a strong case — LEDs last 15,000–25,000 hours, so the saving compounds for over a decade.";
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

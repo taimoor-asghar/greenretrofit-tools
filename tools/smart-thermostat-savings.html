@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Thermostat Savings Estimator | Green Retrofit Guide</title>
+<meta name="description" content="How much can a smart thermostat really save? Estimate your heating-bill saving from smarter controls based on your current setup and occupancy.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/smart-thermostat-savings/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Smart Thermostat Savings Estimator | Green Retrofit Guide">
+<meta property="og:description" content="How much can a smart thermostat really save? Estimate your heating-bill saving from smarter controls based on your current setup and occupancy.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/smart-thermostat-savings/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much can a smart thermostat really save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends entirely on your current controls: 10-18% for homes with no real controls, 5-10% with a basic thermostat, 2-5% if you already have a thermostat plus TRVs. The calculator above estimates your position honestly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do smart thermostats work with combi boilers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — combis are the most compatible boiler type, and self-install typically takes under an hour. Check your exact boiler model on the manufacturer's compatibility checker first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are smart thermostats compatible with heat pumps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some are, some actively harm efficiency. Heat pumps need low, steady temperatures — a boiler-style thermostat demanding rapid warm-ups fights the heat pump. Buy a model with explicit heat-pump support if relevant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need smart TRVs on every radiator too?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Standard TRVs (£10-15 each) capture most of the room-by-room saving. Smart TRVs add app control and scheduling per room — nice, but the payback stretches."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is geofencing worth it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the single most effective smart feature for households with irregular schedules — it eliminates the 'heated an empty house all day' waste that rigid timers cause."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will a smart thermostat pay for itself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For poorly controlled homes, usually within 1-2 years. For homes with a thermostat and TRVs already, treat it as a £200 comfort upgrade rather than an investment."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Smart Thermostat Savings Estimator | Green Retrofit Guide",
+  "description": "How much can a smart thermostat really save? Estimate your heating-bill saving from smarter controls based on your current setup and occupancy.",
+  "url": "https://greenretrofitguide.com/tools/smart-thermostat-savings/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>What smart thermostats actually do (and don't do)</h2>\n<p>A smart thermostat does not make your boiler more efficient. It cannot change the laws of thermodynamics, whatever the box claims. What it does is stop you heating an empty house, overheating rooms you are not using, and running the heat"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Smart Thermostat Savings Estimator</nav>
+<h1>Smart Thermostat Savings Estimator</h1>
+<p class="lead">Smart thermostats promise 10–15% off heating bills — but only if your current controls are poor. Enter your setup for an honest estimate of what smarter heating control would actually save you.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="bill">Annual heating bill (£)</label>
+<input type="number" id="bill" value="900" min="100" max="5000" step="10">
+<span class="hint">Gas + any electric heating. A typical UK gas-heated home spends ~£900–£1,100 on heating.</span></div>
+<div class="field"><label for="controls">Current heating controls</label>
+<select id="controls">
+<option value="0.15" selected>No thermostat or timer (manual on/off)</option>
+<option value="0.10">Basic thermostat only</option>
+<option value="0.05">Programmer + thermostat, no TRVs</option>
+<option value="0.02">Thermostat + TRVs already fitted</option>
+</select>
+<span class="hint">The worse your current controls, the more a smart thermostat can save.</span></div>
+<div class="field"><label for="occ">Occupancy pattern</label>
+<select id="occ">
+<option value="1.2" selected>Out on weekdays (empty 9–5)</option>
+<option value="1.0">Mixed / part-time at home</option>
+<option value="0.7">Someone home all day</option>
+</select>
+<span class="hint">Smart scheduling saves most when the house sits empty on a timer's rigid schedule.</span></div>
+<div class="field"><label for="cost">Smart thermostat cost, installed (£)</label>
+<input type="number" id="cost" value="200" min="50" max="500" step="10">
+<span class="hint">Typical: £150–£250 fitted. Self-install kits from ~£120.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-save"></span> <small>saved per year</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-pct"></div><div class="k">Of heating bill</div></div>
+<div class="stat"><div class="v" id="r-payback"></div><div class="k">Payback</div></div>
+<div class="stat"><div class="v" id="r-5yr"></div><div class="k">5-year net saving</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ cut / year</div></div>
+</div>
+<div class="note" style="margin-top:16px"><strong>Reality check:</strong> <span id="r-verdict"></span></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>What smart thermostats actually do (and don't do)</h2>
+<p>A smart thermostat does not make your boiler more efficient. It cannot change the laws of thermodynamics, whatever the box claims. What it does is stop you heating an empty house, overheating rooms you are not using, and running the heating on a rigid timer that bears no relation to your life. The savings come entirely from behaviour the device automates: turning down when you leave, learning when you return, and — in the better models — adjusting for the weather so the boiler works less hard on mild days.</p>
+<p>The test case — a £900 heating bill, no real controls, empty on weekdays — saves £162 a year (18%), paying back a £200 device in 1.2 years. That is the <em>good</em> end of the range, and it is realistic for the millions of UK homes still running a boiler on a basic timer with no room thermostat. At the other end, a home with a thermostat, programmer and thermostatic radiator valves (TRVs) already fitted might save 2–3% — £20–£30 a year, a seven-year payback. The calculator is honest about which end you are at, because the marketing never is.</p>
+<h2>Which smart features genuinely save money</h2>
+<p>Not all "smart" features are equal. The ones with real evidence behind them: <strong>geofencing</strong> (the heating drops when the last phone leaves and recovers before you return — kills the "forgot to turn it off" waste), <strong>learning schedules</strong> (adapts to your actual pattern rather than the timer you set in 2019 and never touched), and <strong>weather compensation / load compensation</strong> (adjusts flow temperature to the weather, so condensing boilers actually condense — this one saves gas even when you are home). Multi-room control with smart TRVs extends the saving to individual rooms: heat the office, not the spare bedroom.</p>
+<p>The features that are mostly marketing: voice control (convenient, saves nothing), energy-history dashboards (interesting for a week), and "AI optimisation" claims without weather compensation underneath. Buy for geofencing, scheduling flexibility, and boiler modulation — the rest is garnish.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>TRV</dt><dd>Thermostatic radiator valve — the numbered dial on each radiator that limits its individual temperature. Cheap (£10–£15 each) and effective.</dd>
+<dt>Geofencing</dt><dd>The thermostat tracks household phones' location and adjusts heating when everyone leaves / someone returns.</dd>
+<dt>Weather compensation</dt><dd>The boiler lowers its flow temperature on mild days, burning less gas. Needs a compatible boiler and an outdoor sensor or internet weather data.</dd>
+<dt>Load compensation</dt><dd>Similar, but based on the gap between room temperature and target rather than outside weather. OpenTherm boilers do this well.</dd>
+</dl></div>
+<h2>Compatibility: combi, system and heat-pump homes</h2>
+<p>Most smart thermostats work with combi boilers and system/regular boilers — the wiring is standard, and self-install takes under an hour if you are comfortable with basic electrics (mains off, obviously). The compatibility questions that matter: <strong>hot water control</strong> — if you have a hot water cylinder (system/regular boiler), you want a model that controls hot water timing too, not just heating; <strong>OpenTherm</strong> — some boilers speak this modulation protocol, letting the thermostat fine-tune output rather than just switching on/off, which is measurably more efficient; and <strong>heat pumps</strong> — these need thermostats that understand low, steady temperatures, not on/off blasts. A smart thermostat designed for boilers can actually fight a heat pump's efficiency by demanding rapid warm-ups. If you have or plan a heat pump, check the heat-pump compatibility list before buying.</p>
+<p>Electric storage heaters and underfloor electric heating are separate worlds with their own controls — a standard smart thermostat is not the answer there. And in flats with communal heating, you often cannot fit one at all; check with the building manager.</p>
+<h2>The £15 alternative nobody advertises</h2>
+<p>Before spending £200, consider what £30 of TRVs achieves. Fitting thermostatic valves to every radiator — a DIY-able job — lets each room hold its own temperature, which captures a large share of the "don't heat empty rooms" saving that smart systems sell. A £15 plug-in programmable thermostat on the wall does the scheduling. The honest hierarchy: TRVs first (£30–£60, huge bang for buck), a decent programmable thermostat second, a smart thermostat third for the automation layer. Many homes should stop at step two. The calculator's "weak case" verdict exists precisely for homes at step two already.</p>
+<h2>Installation and running costs</h2>
+<p>Professional installation runs £150–£250 including the device; self-install kits cost £120–£180. Most models need a constant power supply at the thermostat location — battery-only models exist but chew through batteries. Ongoing costs are nil beyond the app (no subscriptions on the mainstream models as of 2026, though check — a couple of brands have experimented with premium tiers). Compatibility with your boiler brand matters more than the feature list: check the manufacturer's compatibility checker with your exact boiler model before ordering, not after.</p>
+<h3>Data and privacy: the fine print</h3>
+<p>A smart thermostat knows when your house is empty. That is the entire point of geofencing, and it is also a dataset worth thinking about. The mainstream brands' privacy policies allow aggregated, anonymised usage analytics; check whether yours opts you into anything beyond that, and whether location data is stored or processed on-device. This is not a reason to avoid the technology — it is a reason to read the settings screen once, turn off what you do not need, and pick a brand with a clear policy.</p>
+<h2>Where smart controls sit in the retrofit order</h2>
+<p>Controls are a Phase A quick win: cheap, fast payback (for poorly controlled homes), and zero disruption. But they are not a substitute for fabric. A smart thermostat in a draughty, uninsulated house is an efficient manager of waste — it will dutifully minimise the heating of rooms that leak heat through single glazing. Do the <a href="https://greenretrofitguide.com/tools/home-energy-audit/">energy audit</a> first, insulate the loft (£300/year saving for £500), draught-proof (£70/year for £120 DIY), and <em>then</em> let the smart thermostat optimise what remains. Controls multiply the value of fabric; they do not replace it.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How much can a smart thermostat really save?</summary><p>It depends entirely on your current controls: 10-18% for homes with no real controls, 5-10% with a basic thermostat, 2-5% if you already have a thermostat plus TRVs. The calculator above estimates your position honestly.</p></details>
+<details><summary>Do smart thermostats work with combi boilers?</summary><p>Yes — combis are the most compatible boiler type, and self-install typically takes under an hour. Check your exact boiler model on the manufacturer's compatibility checker first.</p></details>
+<details><summary>Are smart thermostats compatible with heat pumps?</summary><p>Some are, some actively harm efficiency. Heat pumps need low, steady temperatures — a boiler-style thermostat demanding rapid warm-ups fights the heat pump. Buy a model with explicit heat-pump support if relevant.</p></details>
+<details><summary>Do I need smart TRVs on every radiator too?</summary><p>Not necessarily. Standard TRVs (£10-15 each) capture most of the room-by-room saving. Smart TRVs add app control and scheduling per room — nice, but the payback stretches.</p></details>
+<details><summary>Is geofencing worth it?</summary><p>It is the single most effective smart feature for households with irregular schedules — it eliminates the 'heated an empty house all day' waste that rigid timers cause.</p></details>
+<details><summary>Will a smart thermostat pay for itself?</summary><p>For poorly controlled homes, usually within 1-2 years. For homes with a thermostat and TRVs already, treat it as a £200 comfort upgrade rather than an investment.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/heating-controls/">Heating controls advice</a></li>
+<li>BEIS — <a href="https://www.gov.uk/government/publications">Smart thermostat field trial evidence</a></li>
+<li>Which? — <a href="https://www.which.co.uk/">Smart thermostat reviews and compatibility</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var bill=num("bill"), rate=num("controls"), occF=num("occ"), cost=num("cost");
+  var saving=bill*rate*occF;
+  var payback=saving>0?cost/saving:0;
+  var net5=saving*5-cost;
+  var co2=saving/6*0.21/1000*100;
+  document.getElementById("r-save").textContent=money(Math.round(saving))+"/yr";
+  document.getElementById("r-pct").textContent=(rate*occF*100).toFixed(1)+"%";
+  document.getElementById("r-payback").textContent=payback>0?payback.toFixed(1)+" yrs":"\u2014";
+  document.getElementById("r-5yr").textContent=(net5>=0?"":"\u2212")+money(Math.abs(Math.round(net5)));
+  document.getElementById("r-co2").textContent=co2.toFixed(2)+" t";
+  var v;
+  if(rate>=0.10) v="Strong case: your current controls are basic, so smart scheduling and geofencing should deliver real savings.";
+  else if(rate>=0.05) v="Moderate case: you already have decent controls, so expect the lower end of the saving — buy it for convenience as much as cash.";
+  else v="Weak financial case: with a thermostat and TRVs already fitted, a smart thermostat is a comfort upgrade, not an investment. Spend the £200 on draught-proofing instead.";
+  document.getElementById("r-verdict").textContent=v;
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

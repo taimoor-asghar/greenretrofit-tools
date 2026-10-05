@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Double Glazing ROI Calculator | Green Retrofit Guide</title>
+<meta name="description" content="Is double glazing worth it? Calculate the real payback of new windows for your UK home — with honest numbers on comfort, noise and condensation, not just pounds.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/double-glazing-roi/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Double Glazing ROI Calculator | Green Retrofit Guide">
+<meta property="og:description" content="Is double glazing worth it? Calculate the real payback of new windows for your UK home — with honest numbers on comfort, noise and condensation, not just pounds.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/double-glazing-roi/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is double glazing worth it for the energy savings alone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not, if savings are the only measure. A typical semi saves ~£165/year against a ~£5,000 cost — a 30-year payback. Buy windows for comfort, noise reduction and condensation control; treat the bill saving as a bonus. Insulate the loft and cavity first — both pay back in under 5 years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does triple glazing pay back faster than double?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — it saves ~30% more energy but costs ~20-30% more, so the payback is similar or slightly longer. Choose triple glazing for comfort, noise or very cold/exposed locations, not for a faster financial return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will new windows stop condensation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They stop condensation on the glass itself, because the inner pane stays much warmer. But if your home has no background ventilation (trickle vents, extractor fans), moisture will simply condense on the next coldest surface — often a wall corner. Always keep trickle vents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need planning permission for new windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most cases no — like-for-like replacements are permitted development. You need consent for listed buildings, and often in conservation areas (especially for material or style changes, e.g. timber sash to uPVC). Check with your council first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a FENSA certificate and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FENSA is the self-certification scheme proving your replacement windows comply with building regulations. Solicitors ask for the certificate when you sell — missing paperwork delays conveyancing. Always use a FENSA-registered (or equivalent) installer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I just replace the glass instead of the whole window?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if the frames are sound. Misted sealed units can be replaced for £100-£200 each — a tenth of a new window. Draughty timber sashes can often be overhauled and draught-proofed for £200-£400 each."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Double Glazing ROI Calculator | Green Retrofit Guide",
+  "description": "Is double glazing worth it? Calculate the real payback of new windows for your UK home — with honest numbers on comfort, noise and condensation, not just pounds.",
+  "url": "https://greenretrofitguide.com/tools/double-glazing-roi/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>Why double glazing payback is so long — the honest version</h2>\n<p>Double glazing is the most-sold energy retrofit in Britain, and it has the worst financial payback of any common measure. That sounds like a contradiction until you separate two different products being sold under one name: the "
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Double Glazing ROI Calculator</nav>
+<h1>Double Glazing ROI Calculator</h1>
+<p class="lead">New windows are one of the most-sold retrofits in Britain — and one of the slowest to pay back. Enter your windows for the honest maths, then decide on comfort and noise, not just savings.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="ptype">Property type</label>
+<select id="ptype">
+<option value="1.4">Detached</option>
+<option value="1.0" selected>Semi-detached</option>
+<option value="0.8">Terraced</option>
+<option value="0.5">Flat</option>
+</select></div>
+<div class="field"><label for="windows">Number of windows (incl. glazed doors)</label>
+<input type="number" id="windows" value="10" min="1" max="40"></div>
+<div class="field"><label for="current">Current glazing</label>
+<select id="current">
+<option value="1.0" selected>Single glazed</option>
+<option value="0.45">Old double glazing (pre-2002)</option>
+</select>
+<span class="hint">Replacing old double glazing saves less than half what replacing single glazing saves.</span></div>
+<div class="field"><label for="newgl">New glazing</label>
+<select id="newgl">
+<option value="1.0" selected>Modern double glazing</option>
+<option value="1.3">Triple glazing</option>
+</select>
+<span class="hint">Triple glazing saves ~30% more than double but costs ~20-30% more.</span></div>
+<div class="field"><label for="cost">Install cost (£)</label>
+<input type="number" id="cost" value="5000" min="500" max="40000" step="100">
+<span class="hint">Default: £500 per window, a fair 2026 UK price for quality uPVC.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-payback"></span> <small>year payback</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-save"></div><div class="k">Annual saving</div></div>
+<div class="stat"><div class="v" id="r-25"></div><div class="k">25-year net (after cost)</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ saved / year</div></div>
+</div>
+<div class="note" style="margin-top:16px"><strong>Honest verdict:</strong> <span id="r-verdict"></span></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>Why double glazing payback is so long — the honest version</h2>
+<p>Double glazing is the most-sold energy retrofit in Britain, and it has the worst financial payback of any common measure. That sounds like a contradiction until you separate two different products being sold under one name: the <em>energy saving</em>, which is modest, and the <em>comfort upgrade</em>, which is enormous. A semi-detached house replacing ten single-glazed windows saves roughly £165 a year on heating — against a £5,000 install cost, that is a 30-year payback, longer than the windows' own expected life. The calculator above shows this plainly rather than burying it, because buying windows for the savings alone is usually a mistake.</p>
+<p>Why is the saving so small? Because windows, even bad ones, are a modest share of a home's heat loss. A typical UK home loses roughly 10–15% of its heat through windows; the other 85% goes through walls, roof, floors, and draughts. Doubling or tripling the insulation value of 12% of your losses only moves the total bill a little. Loft insulation, by contrast, attacks a bigger loss for a tenth of the money. This is the fabric-first hierarchy the whole toolkit follows: insulate the cheap big losses before upgrading the expensive small ones.</p>
+<h2>What you are actually buying: comfort, noise, condensation</h2>
+<p>Here is the case <em>for</em> new windows, stated properly. Single glazing has a U-value around 4.8–5.0 W/m²K; modern double glazing is about 1.2–1.6; good triple glazing reaches 0.8. In plain English: the inner surface of a single-glazed window on a cold night sits at roughly 5–8°C, which is why you feel a chill radiating off it and why condensation pools on the sill every morning. A modern double-glazed unit's inner pane sits at 15–17°C — the cold draught sensation disappears, rooms feel evenly warm, and condensation largely stops. Anyone who has lived with single glazing knows this is not a subtle difference; it changes which rooms are usable in winter.</p>
+<p>Noise is the second real benefit, and for many buyers the deciding one. Standard double glazing cuts perceived noise roughly in half compared with single glazing; acoustic laminated glass does better still. If you live on a main road, under a flight path, or near nightlife, the acoustic upgrade alone can justify the cost — estate agents will tell you road noise is one of the top three buyer objections, and it is one of the few you can actually fix. Security is the third: modern multi-point locking and internally beaded frames are meaningfully harder to force than 1980s aluminium sliders.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>U-value</dt><dd>How fast heat passes through the window — lower is better. Single ~4.8, modern double ~1.2–1.6, triple ~0.8 W/m²K.</dd>
+<dt>Window Energy Rating (WER)</dt><dd>An A++ to E scale balancing heat loss, solar gain and air leakage. Aim for A-rated as a minimum.</dd>
+<dt>Trickle vent</dt><dd>A small controllable vent in the frame providing background ventilation. Building regulations require them in most replacements.</dd>
+<dt>FENSA</dt><dd>The self-certification scheme for replacement windows. A FENSA certificate proves compliance with building regulations — buyers' solicitors will ask for it.</dd>
+</dl></div>
+<h2>U-values, ratings and what to specify</h2>
+<p>When you get quotes, specify in writing: the whole-window U-value (not just the centre-pane value, which is always better-looking), the Window Energy Rating (A or above), the frame material, the glass specification (low-E coating, argon fill as standard in 2026), and trickle vents. The difference between a quoted centre-pane U-value of 1.1 and a whole-window value of 1.6 is the frame and edge losses the brochure hopes you will not notice. Warm-edge spacer bars — the strip separating the panes — are worth specifying; they cut edge condensation and slightly improve the rating for little money.</p>
+<p>Triple glazing deserves a straight answer. It saves roughly 30% more energy than double and is noticeably quieter and warmer to sit beside, but it costs 20–30% more, the units are heavier (check your frames and hinges), and in mild southern England the extra saving rarely justifies the premium on bills alone. It makes most sense in exposed, cold, or very noisy locations — Scotland, hilltop sites, flight paths — or in a deep retrofit aiming for near-Passivhaus performance. For a standard semi in the Midlands, good double glazing is the sweet spot.</p>
+<h2>The ventilation warning (read this before you seal up)</h2>
+<p>Old leaky windows ventilate your house by accident. New airtight windows do not — which is why building regulations require trickle vents in replacement windows in most cases, and why you must never let an installer talk you out of them. A house with new airtight windows, no trickle vents, and a tumble dryer venting indoors is a condensation and mould factory. The moisture your household produces — roughly 10–15 litres a day from breathing, cooking, and washing — has to go somewhere. If you are upgrading windows as part of a wider airtightness push, plan the ventilation properly: trickle vents at minimum, mechanical extract in kitchen and bathrooms, and consider the <a href="https://greenretrofitguide.com/tools/draught-proofing-savings/">draught-proofing calculator</a> for the full picture on what to seal and what to leave alone.</p>
+<h2>Costs and the quote game</h2>
+<p>The default £500 per window reflects a fair 2026 price for quality uPVC casements from a reputable local firm. Bay windows cost more per unit; sash replacements in conservation areas cost far more (often £1,000–£1,500 per window for timber-effect or genuine timber sashes). Aluminium and timber frames carry premiums of 30–60% over uPVC. Get at least three quotes, and treat the national chains' "today only" discounts with the contempt they deserve — the standard industry dance is an inflated first price followed by a 40% "manager's discount". A local FENSA-registered firm with a showroom and a decade of trading history will usually beat the nationals on both price and aftercare.</p>
+<h3>Repair versus replace</h3>
+<p>Not every tired window needs replacing. Misted sealed units — condensation <em>between</em> the panes — mean the seal has failed, but the frame is often fine: a glazier can replace just the glass unit for £100–£200, a tenth of a new window. Draughty but sound timber sashes can be draught-proofed and overhauled for £200–£400 per window, preserving original features in period properties where replacement would need planning consent anyway. Replace when frames are rotten, warped, or single-glazed and beyond economic repair; repair when the problem is the glass or the seals.</p>
+<h2>FENSA, guarantees and paperwork</h2>
+<p>Replacement windows in England and Wales must comply with building regulations, and the normal route is a FENSA-registered installer who self-certifies and issues you a FENSA certificate. Keep it: solicitors ask for it on every sale, and missing certificates cause conveyancing delays out of all proportion to their importance. Insurance-backed guarantees (typically 10 years) matter more than the headline guarantee length — a 20-year guarantee from a firm that folds in year three is worthless, while an insurance-backed 10-year guarantee survives the installer. Ask who underwrites it, in writing.</p>
+<h2>When to do windows in your retrofit sequence</h2>
+<p>In the whole-house order, windows sit in Phase B — fabric — after the cheap wins (loft, cavity, draught-proofing) and alongside or before wall insulation. There is one sequencing trap: if you plan a heat pump, do the windows (and insulation) <em>first</em>, because every kilowatt of heat loss you eliminate shrinks the heat pump you need to buy. Oversizing a heat pump for a leaky house, then insulating later, leaves you with an expensive oversized unit cycling inefficiently. Fabric first is not a slogan; it is a purchasing decision. See the <a href="https://greenretrofitguide.com/tools/retrofit-planner/">retrofit planner</a> for the full phased sequence.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>Is double glazing worth it for the energy savings alone?</summary><p>Usually not, if savings are the only measure. A typical semi saves ~£165/year against a ~£5,000 cost — a 30-year payback. Buy windows for comfort, noise reduction and condensation control; treat the bill saving as a bonus. Insulate the loft and cavity first — both pay back in under 5 years.</p></details>
+<details><summary>Does triple glazing pay back faster than double?</summary><p>No — it saves ~30% more energy but costs ~20-30% more, so the payback is similar or slightly longer. Choose triple glazing for comfort, noise or very cold/exposed locations, not for a faster financial return.</p></details>
+<details><summary>Will new windows stop condensation?</summary><p>They stop condensation on the glass itself, because the inner pane stays much warmer. But if your home has no background ventilation (trickle vents, extractor fans), moisture will simply condense on the next coldest surface — often a wall corner. Always keep trickle vents.</p></details>
+<details><summary>Do I need planning permission for new windows?</summary><p>In most cases no — like-for-like replacements are permitted development. You need consent for listed buildings, and often in conservation areas (especially for material or style changes, e.g. timber sash to uPVC). Check with your council first.</p></details>
+<details><summary>What is a FENSA certificate and why does it matter?</summary><p>FENSA is the self-certification scheme proving your replacement windows comply with building regulations. Solicitors ask for the certificate when you sell — missing paperwork delays conveyancing. Always use a FENSA-registered (or equivalent) installer.</p></details>
+<details><summary>Can I just replace the glass instead of the whole window?</summary><p>Yes, if the frames are sound. Misted sealed units can be replaced for £100-£200 each — a tenth of a new window. Draughty timber sashes can often be overhauled and draught-proofed for £200-£400 each.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/double-glazing/">Double glazing: advice and savings</a></li>
+<li>British Fenestration Rating Council — <a href="https://bfrc.org/">Window Energy Ratings explained</a></li>
+<li>FENSA — <a href="https://www.fensa.org.uk/">Find a registered installer</a></li>
+<li>Gov.uk — <a href="https://www.gov.uk/planning-permission-england-wales">Planning permission guidance</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var pf=num("ptype"), w=num("windows"), curF=parseFloat(document.getElementById("current").value);
+  var newF=parseFloat(document.getElementById("newgl").value), cost=num("cost");
+  var annualSaving=w*16.5*pf*newF*curF;
+  var payback=annualSaving>0?cost/annualSaving:0;
+  var net25=annualSaving*25-cost;
+  var co2=annualSaving/6*0.21/1000*100;
+  document.getElementById("r-payback").textContent=payback>0?payback.toFixed(1):"\u2014";
+  document.getElementById("r-save").textContent=money2(annualSaving);
+  document.getElementById("r-25").textContent=(net25>=0?"":"\u2212")+money(Math.abs(Math.round(net25)));
+  document.getElementById("r-co2").textContent=(co2).toFixed(2)+" t";
+  var v;
+  if(payback>25) v="Purely on bills, this does not pay for itself in the windows' lifetime. Buy it for comfort, noise and condensation — or insulate the loft first, which pays back in under 2 years.";
+  else if(payback>15) v="A long payback, but worth it if your windows are failing, draughty or single-glazed in a noisy street.";
+  else v="A reasonable payback for windows — and the comfort gains come free on top.";
+  document.getElementById("r-verdict").textContent=v;
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

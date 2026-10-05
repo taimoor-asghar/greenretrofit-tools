@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cavity Wall Suitability Checker | Green Retrofit Guide</title>
+<meta name="description" content="Is your home suitable for cavity wall insulation? Answer 6 questions for a safety-first verdict — suitable, needs survey, or not suitable — before you let anyone drill your walls.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/cavity-wall-suitability/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cavity Wall Suitability Checker | Green Retrofit Guide">
+<meta property="og:description" content="Is your home suitable for cavity wall insulation? Answer 6 questions for a safety-first verdict — suitable, needs survey, or not suitable — before you let anyone drill your walls.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/cavity-wall-suitability/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I know if my house has cavity walls?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check the brick pattern (all long faces = likely cavity), measure wall thickness at a reveal (over ~300mm suggests a cavity), or consider the age (1930s-1980s usually cavity). A borescope survey settles it definitively."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can cavity wall insulation cause damp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In unsuitable walls, yes — this is the central risk. Severe exposure, existing damp, narrow cavities or rendered finishes can let wind-driven rain track across the fill to the inner wall. That is exactly what this checker screens for."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which cavity fill material is best?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bonded EPS beads are the current professional preference for most homes — good moisture resistance and removable. Mineral wool is cheaper but more moisture-sensitive; injected foam performs well but is hard to remove and can complicate wall-tie work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the CIGA guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Cavity Insulation Guarantee Agency's 25-year guarantee covering defects in materials and workmanship, including installation-caused damp. Every compliant install includes it — if it is not offered, walk away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My walls are solid. What are my options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Internal wall insulation (£5,000-£9,000 for a semi) or external wall insulation (£8,000-£15,000). Both are bigger jobs than cavity fill, but they work — and the cheap wins (loft, draught-proofing) still apply regardless."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should wall ties be replaced before cavity fill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If they need it, yes — corroded wall ties are common in 1930s-60s homes and are much harder to replace after the cavity is filled. A proper survey checks tie condition first."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cavity Wall Suitability Checker | Green Retrofit Guide",
+  "description": "Is your home suitable for cavity wall insulation? Answer 6 questions for a safety-first verdict — suitable, needs survey, or not suitable — before you let anyone drill your walls.",
+  "url": "https://greenretrofitguide.com/tools/cavity-wall-suitability/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>Why this checker exists: the damp problem</h2>\n<p>Cavity wall insulation is one of Britain's best-value retrofits — about £350 a year saved for a semi-detached home, installed in half a day for under £1,200. It is also, in the wrong walls, one of the most damaging things you can do to a house. "
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Cavity Wall Suitability Checker</nav>
+<h1>Cavity Wall Suitability Checker</h1>
+<p class="lead">Cavity wall insulation is brilliant in the right walls and a damp disaster in the wrong ones. This safety-first checker tells you which category your home falls into — before any installer drills a hole.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="wall">Wall construction</label>
+<select id="wall">
+<option value="cavity" selected>Cavity walls (two leaves with a gap)</option>
+<option value="solid">Solid walls (one thick leaf, no cavity)</option>
+<option value="timber">Timber frame</option>
+<option value="unknown">Not sure</option>
+</select>
+<span class="hint">Check: brick pattern with all long faces = likely cavity; alternating long/short = likely solid. Or measure at a door/window reveal — over 300mm suggests a cavity.</span></div>
+<div class="field"><label for="age">Property age</label>
+<select id="age">
+<option value="new">1990 or newer</option>
+<option value="mid" selected>1930–1989</option>
+<option value="old">Pre-1930</option>
+</select></div>
+<div class="field"><label for="exposure">Exposure to driving rain</label>
+<select id="exposure">
+<option value="sheltered" selected>Sheltered (town, low, protected)</option>
+<option value="moderate">Moderate</option>
+<option value="severe">Severe (hilltop, coastal, very exposed)</option>
+</select></div>
+<div class="field"><label for="damp">Existing damp, cracks or wall damage?</label>
+<select id="damp">
+<option value="no" selected>No — walls sound and dry</option>
+<option value="yes">Yes — damp patches, cracks or spalling brickwork</option>
+</select></div>
+<div class="field"><label for="finish">Wall finish</label>
+<select id="finish">
+<option value="brick" selected>Bare brick</option>
+<option value="render">Render / pebbledash</option>
+<option value="stone">Stone</option>
+</select></div>
+<div class="field"><label for="width">Cavity width (if known)</label>
+<select id="width">
+<option value="ok" selected>50mm or more / don't know</option>
+<option value="narrow">Narrower than 50mm</option>
+</select></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-verdict"></span></div>
+<div id="r-why" style="margin-top:10px;font-size:15.5px"></div>
+<div class="note" style="margin-top:14px"><strong>Next step:</strong> <span id="r-next"></span></div>
+</div>
+</section>
+<article class="guide">
+
+<h2>Why this checker exists: the damp problem</h2>
+<p>Cavity wall insulation is one of Britain's best-value retrofits — about £350 a year saved for a semi-detached home, installed in half a day for under £1,200. It is also, in the wrong walls, one of the most damaging things you can do to a house. Fill a cavity that should never have been filled and wind-driven rain tracks across the insulation to the inner leaf, producing damp that did not exist before, rotting timbers, and repair bills in the tens of thousands. This is not theoretical: the problems peaked in the 2000s––2010s when aggressive sales operations filled unsuitable walls across exposed western Britain, and the redress schemes are still paying out. This checker is deliberately conservative. A false "not suitable" costs you a survey; a false "suitable" can cost you your walls.</p>
+<p>The physics is simple. An empty cavity is a drainage and drying zone: rain that penetrates the outer brick runs down the inside face and evaporates, never reaching the inner leaf. Fill the cavity and you create a bridge — some insulation materials wick moisture, and even non-wicking materials reduce the cavity's ability to dry. In sheltered locations with sound brickwork this does not matter; the outer leaf never gets saturated. In severe exposure — Atlantic-facing coasts, hilltops, the western Pennines — the outer leaf can saturate regularly, and a filled cavity becomes a damp delivery system. Exposure, wall condition, and material are everything.</p>
+<h2>How to tell what walls you have</h2>
+<p>Most UK homes built between the 1930s and 1980s have cavity walls; most pre-1920s homes are solid; timber frame appears in pockets (notably 1960s–80s estates and modern builds). Quick checks: <strong>brick pattern</strong> — if every visible brick shows its long face (stretcher bond), the wall is likely cavity; alternating long and short faces (Flemish or English bond) usually means solid. <strong>Wall thickness</strong> at a door or window reveal: under ~260mm suggests solid, over ~300mm suggests cavity. <strong>Age</strong>: cavity construction became standard in the 1930s and mandatory-ish after the war, but plenty of 1930s homes are solid — never assume by age alone. If in doubt, select "not sure" and the checker routes you to a survey: a borescope inspection (a tiny camera through a drilled hole) settles it definitively in minutes.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>Cavity wall</dt><dd>Two masonry leaves with a gap (typically 50–100mm) between them. The gap is what gets filled.</dd>
+<dt>Solid wall</dt><dd>A single thick masonry leaf with no cavity — nothing to fill; needs internal or external insulation instead.</dd>
+<dt>CIGA</dt><dd>The Cavity Insulation Guarantee Agency — issues the 25-year guarantee. Always use a CIGA-registered installer.</dd>
+<dt>Driving rain / exposure</dt><dd>Wind-driven rain hitting the wall. The UK exposure map grades areas sheltered → severe; the west and coasts are worst.</dd>
+<dt>Borescope survey</dt><dd>A camera on a flexible probe inserted through a small drilled hole to inspect the cavity's width, debris and condition.</dd>
+</dl></div>
+<h2>The materials: mineral wool, beads, and foam</h2>
+<p>Three main fill materials are used in 2026: <strong>mineral wool</strong> (the traditional choice, blown in as fibres — cheap and effective, but the most moisture-sensitive), <strong>EPS beads</strong> (polystyrene beads, often bonded with adhesive — the best moisture resistance, the current professional preference for anything but the most sheltered sites), and <strong>polyurethane foam</strong> (injected, excellent thermal performance, but controversial: it is hard to remove, can complicate future wall-tie replacement, and some mortgage lenders dislike it). If your surveyor recommends foam, ask specifically about wall-tie access and lender acceptance — and get the reasoning in writing. For most suitable walls, bonded bead is the sweet spot of performance, moisture safety, and removability.</p>
+<h2>Red flags in an installer's survey</h2>
+<p>A proper survey takes 45–60 minutes and includes: borescope inspection of the cavity, a damp-meter check of internal walls, assessment of exposure and wall finish, and questions about the property's history. Red flags: a "survey" done entirely from the doorstep or via satellite imagery; pressure to sign the same day; no mention of the CIGA guarantee; a quote far below £700 (corners are being cut) or with "today only" discounts; and any reluctance to put the wall-type finding in writing. The industry's rogue era was driven by commission-paid salespeople, not surveyors — the person assessing your walls should not be paid by the job they recommend.</p>
+<h3>If your walls are not suitable: the alternatives</h3>
+<p>"Not suitable" is not the end of the retrofit — it just reroutes it. Solid walls take <strong>internal wall insulation</strong> (typically £5,000–£9,000 for a semi, disruptive but effective) or <strong>external wall insulation</strong> (£8,000–£15,000, transforms the appearance — check planning in conservation areas). Timber frames need breathable, frame-safe approaches designed by a specialist. And whatever the walls, the cheap wins still apply: loft insulation, draught-proofing, and heating controls do not care what your walls are made of. Run the <a href="https://greenretrofitguide.com/tools/home-energy-audit/">energy audit</a> to re-rank your options.</p>
+<h2>The CIGA guarantee and your paperwork</h2>
+<p>Every compliant install comes with a 25-year CIGA guarantee covering defects in materials and workmanship — including damp caused by the installation. This is not optional and not a paid extra; if it is not offered, walk away. Keep the guarantee certificate with your house paperwork: solicitors and surveyors ask about cavity insulation on every transaction, and a documented CIGA-backed install is an asset while an undocumented one is a question mark. If you already have cavity insulation and suspect damp, CIGA operates an independent complaints and redress process — use it rather than paying a second firm to "fix" the first firm's work.</p>
+<h2>When to do it in your retrofit sequence</h2>
+<p>Cavity fill sits in Phase B (fabric), alongside loft insulation and draught-proofing — after the sub-£500 quick wins, before windows and heating systems. One sequencing note: if wall-tie replacement is on the cards (common in 1930s–60s cavity homes — your surveyor checks), do the wall ties <em>before</em> the fill, because remedial ties are far harder to install through insulation. And as with all fabric measures, it shrinks the heat pump you will eventually need — see the <a href="https://greenretrofitguide.com/tools/retrofit-planner/">retrofit planner</a> for the full order.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How do I know if my house has cavity walls?</summary><p>Check the brick pattern (all long faces = likely cavity), measure wall thickness at a reveal (over ~300mm suggests a cavity), or consider the age (1930s-1980s usually cavity). A borescope survey settles it definitively.</p></details>
+<details><summary>Can cavity wall insulation cause damp?</summary><p>In unsuitable walls, yes — this is the central risk. Severe exposure, existing damp, narrow cavities or rendered finishes can let wind-driven rain track across the fill to the inner wall. That is exactly what this checker screens for.</p></details>
+<details><summary>Which cavity fill material is best?</summary><p>Bonded EPS beads are the current professional preference for most homes — good moisture resistance and removable. Mineral wool is cheaper but more moisture-sensitive; injected foam performs well but is hard to remove and can complicate wall-tie work.</p></details>
+<details><summary>What is the CIGA guarantee?</summary><p>The Cavity Insulation Guarantee Agency's 25-year guarantee covering defects in materials and workmanship, including installation-caused damp. Every compliant install includes it — if it is not offered, walk away.</p></details>
+<details><summary>My walls are solid. What are my options?</summary><p>Internal wall insulation (£5,000-£9,000 for a semi) or external wall insulation (£8,000-£15,000). Both are bigger jobs than cavity fill, but they work — and the cheap wins (loft, draught-proofing) still apply regardless.</p></details>
+<details><summary>Should wall ties be replaced before cavity fill?</summary><p>If they need it, yes — corroded wall ties are common in 1930s-60s homes and are much harder to replace after the cavity is filled. A proper survey checks tie condition first.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>CIGA — <a href="https://ciga.co.uk/">Cavity Insulation Guarantee Agency</a></li>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/cavity-wall-insulation/">Cavity wall insulation advice</a></li>
+<li>BRE — <a href="https://www.bregroup.com/">Building Research Establishment guidance</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function val(id){return document.getElementById(id).value;}
+function calculate(){
+  var wall=val("wall"), exposure=val("exposure"), damp=val("damp"),
+      finish=val("finish"), width=val("width");
+  var verdict, why=[], next="";
+  var notSuitable = (wall==="solid"||wall==="timber") || damp==="yes" ||
+      width==="narrow" || (exposure==="severe"&&finish==="render");
+  var needsSurvey = !notSuitable && (wall==="unknown"||exposure==="moderate"||finish==="stone");
+  if(notSuitable){
+    verdict="NOT SUITABLE";
+    if(wall==="solid") why.push("Solid walls have no cavity to fill — filling is physically impossible; internal or external wall insulation is the correct measure.");
+    if(wall==="timber") why.push("Timber-frame walls must never be cavity-filled with standard materials — trapped moisture rots the frame.");
+    if(damp==="yes") why.push("Existing damp or damaged walls must be repaired first — insulation in a damp wall makes damp worse, not better.");
+    if(width==="narrow") why.push("Cavities under 50mm cannot be reliably filled — the material bridges and moisture tracks across.");
+    if(exposure==="severe"&&finish==="render") why.push("Severe exposure plus render is the classic damp-risk combination — wind-driven rain overwhelms filled cavities.");
+    next="Do not let any installer proceed with cavity fill. Get an independent damp/structural survey, fix defects, and consider internal or external wall insulation instead. Find a CIGA-registered installer for a second opinion — never a cold-caller.";
+  } else if(needsSurvey){
+    verdict="NEEDS A SURVEY";
+    if(wall==="unknown") why.push("Wall type is unconfirmed — a borescope inspection settles it in minutes.");
+    if(exposure==="moderate") why.push("Moderate exposure is usually fine, but the surveyor must confirm wall condition and mortar quality.");
+    if(finish==="stone") why.push("Stone walls have irregular cavities that need specialist assessment — standard fill may be unsuitable.");
+    next="Book a free survey with a CIGA-registered installer (CIGA is the industry guarantee body). A proper survey includes a borescope look inside the cavity and a damp check — it takes under an hour.";
+  } else {
+    verdict="SUITABLE";
+    why.push("Clear cavity, sound dry walls, and sheltered-to-moderate exposure: this is the textbook case for cavity fill.");
+    why.push("Expect ~£350/year saving for a semi-detached home (see the insulation calculator) at a typical cost of £800–£1,200 — payback under 4 years.");
+    next="Get three quotes from CIGA-registered installers, confirm the 25-year CIGA guarantee is included, and check the 0% VAT treatment on the quote.";
+  }
+  var vEl=document.getElementById("r-verdict");
+  vEl.textContent=verdict;
+  vEl.style.color = notSuitable ? "#c0392b" : (needsSurvey ? "#8a6d00" : "#1a7a4a");
+  document.getElementById("r-why").innerHTML="<ul style='margin-left:20px'>"+why.map(function(w){return "<li style='margin-bottom:6px'>"+w+"</li>";}).join("")+"</ul>";
+  document.getElementById("r-next").textContent=next;
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

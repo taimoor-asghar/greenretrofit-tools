@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whole-House Retrofit Planner | Green Retrofit Guide</title>
+<meta name="description" content="Plan your whole-house retrofit in three phases: quick wins, fabric, then systems. Enter your home, budget and goal, and get a sequenced plan with costs, savings and CO₂.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/retrofit-planner/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Whole-House Retrofit Planner | Green Retrofit Guide">
+<meta property="og:description" content="Plan your whole-house retrofit in three phases: quick wins, fabric, then systems. Enter your home, budget and goal, and get a sequenced plan with costs, savings and CO₂.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/retrofit-planner/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What order should I do home retrofit measures in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quick wins first (LEDs, draught-proofing, controls — under £500, payback under 2 years), then fabric (loft, walls, glazing), then systems (solar, heat pump) sized for the improved building. Fabric before heating is the golden rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a whole-house retrofit cost in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The classic three-phase plan for a 1970s semi (quick wins + loft/cavity + 4kWp solar) costs about £8,425 and saves ~£1,847/yr. A deep retrofit with heat pump and glazing runs £15,000-£25,000 after grants."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get a heat pump before insulating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — insulate first. A heat pump sized for a draughty house is bigger, pricier and harder to run than one sized for the insulated version of the same house. Fabric first, systems last."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a heat pump actually save money vs a gas boiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often not at current prices: at 24p/kWh electricity vs 6p/kWh gas, the standard test case costs £56/yr MORE to run. It cuts ~1.6t CO₂/yr and wins on cheap overnight tariffs — buy it for carbon, not the bill."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I budget for unexpected retrofit costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep 15-20% contingency on any phase that opens up the building. Old houses hide surprises: rubble-filled cavities, no loft felt, undersized radiators. Never spend the whole budget in Phase C on day one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which installer certifications should I look for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MCS for heat pumps and solar PV, CIGA for cavity wall insulation, FENSA for glazing. Get three quotes for anything over £1,000 — 30-50% price spreads are normal."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Whole-House Retrofit Planner | Green Retrofit Guide",
+  "description": "Plan your whole-house retrofit in three phases: quick wins, fabric, then systems. Enter your home, budget and goal, and get a sequenced plan with costs, savings and CO₂.",
+  "url": "https://greenretrofitguide.com/tools/retrofit-planner/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>The golden rule: fabric first, systems last</h2>\n<p>Almost every expensive retrofit mistake is a sequencing mistake. The household that installs a heat pump in a draughty, uninsulated house gets a heat pump sized for the draughts — bigger, pricier, and running harder than it should. The househo"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; Whole-House Retrofit Planner</nav>
+<h1>Whole-House Retrofit Planner</h1>
+<p class="lead">Retrofit in the wrong order and you pay twice. This planner sequences measures the right way — quick wins first, fabric second, heating systems last — inside your budget.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="ptype">Property type</label>
+<select id="ptype"><option value="1.0">Semi-detached</option><option value="1.3">Detached</option><option value="0.8">Terraced</option><option value="0.5">Flat</option></select></div>
+<div class="field"><label for="epc">Current EPC band</label>
+<select id="epc"><option value="D">D (typical UK home)</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="C">C</option><option value="B">B</option></select>
+<span class="hint">Don't know it? Answer the 6 quick questions below for a rough estimate.</span></div>
+<div class="field"><label>Quick EPC estimate (optional — overrides the band above)</label>
+<div class="checks" id="epcquiz">
+<label>Built before 1930? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+<label>Solid (uninsulated) walls? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+<label>Loft insulation under 100mm? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+<label>Single glazing anywhere? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+<label>Boiler over 12 years old? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+<label>No thermostatic radiator valves? <select class="eq" data-p="0"><option value="1">Yes</option><option value="0">No</option></select></label>
+</div></div>
+<div class="field"><label for="budget">Total budget (£)</label>
+<input type="number" id="budget" value="15000" min="500" max="100000" step="500"></div>
+<div class="field"><label for="goal">Primary goal</label>
+<select id="goal"><option value="bills">Cut bills</option><option value="carbon">Cut carbon</option><option value="both">Both</option></select></div>
+<div class="field"><label>Measures to include</label><div class="checks" id="mchecks"></div>
+<span class="hint">Untick anything already done or not applicable (e.g. no cavity walls).</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-total-save"></span> <small>total saving / year</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-total-cost"></div><div class="k">Total cost</div></div>
+<div class="stat"><div class="v" id="r-total-co2"></div><div class="k">CO₂ cut / year</div></div>
+<div class="stat"><div class="v" id="r-budget"></div><div class="k">Budget verdict</div></div>
+</div>
+<div id="r-phases"></div>
+<div class="note" style="margin-top:16px" id="r-print-note"><strong>Tip:</strong> use your browser's print function for a printable summary of this plan.</div>
+</div>
+</section>
+<article class="guide">
+
+<h2>The golden rule: fabric first, systems last</h2>
+<p>Almost every expensive retrofit mistake is a sequencing mistake. The household that installs a heat pump in a draughty, uninsulated house gets a heat pump sized for the draughts — bigger, pricier, and running harder than it should. The household that insulates first, then sizes the heat pump for the improved building, buys a smaller unit, pays less to run it, and is comfortable in both cases. The same logic runs through the whole plan: draught-proof before you upsize radiators, insulate the loft before you quote solar (a cooler, tighter house changes nothing about the panels, but the discipline of order keeps budgets honest), and always, always do the sub-£500 quick wins before anything that needs scaffolding.</p>
+<p>This planner enforces that order with three phases. <strong>Phase A — quick wins:</strong> LED lighting, the cylinder jacket, draught-proofing, standby control, smart heating controls. Every item costs under £500, most pay back in under two years, all are DIY-able or single-visit jobs. <strong>Phase B — fabric:</strong> loft insulation, cavity wall fill, glazing. The building envelope: slower paybacks, bigger absolute savings, and the precondition for everything in Phase C. <strong>Phase C — systems:</strong> solar PV, heat pump, battery. Sized for the improved fabric, quoted after the fabric work is done, never before. Skip a phase and you will pay for it twice — usually in the Phase C quote.</p>
+<h2>Phase A: the £525 weekend</h2>
+<p>Run the planner with the defaults and Phase A totals about £525 for roughly £590 a year back — a blended payback under a year. The items, with the numbers this site's calculators produce:</p>
+<ul>
+<li><strong>LED lighting (£80 / £231/yr):</strong> the fastest payback in the home. Twenty halogen downlights to LEDs, four months to break even.</li>
+<li><strong>Cylinder jacket (£35 / £85/yr):</strong> an 80mm jacket on a bare cylinder. Five months payback, then £85 a year for doing nothing.</li>
+<li><strong>Draught-proofing (£150 / £70/yr):</strong> doors, windows, chimney balloon, floorboards. Two-year payback plus the comfort dividend the £ figure misses.</li>
+<li><strong>Standby control (£40 / £44/yr):</strong> smart plugs on the entertainment stack. Under a year.</li>
+<li><strong>Smart thermostat + TRVs (£220 / £162/yr):</strong> zoned control for the out-all-day household. About sixteen months.</li>
+</ul>
+<p>Do all five in a month and the house is already £590 a year cheaper to run before a single installer has been quoted. That is not the whole retrofit — it is the down payment that funds the psychology of the rest. Households that bank quick wins finish big projects; households that start with a £12,000 quote often finish with nothing.</p>
+<h2>Phase B: the building envelope</h2>
+<p>Phase B is where the real money moves and where the cowboys live, so it gets the most diligence. <strong>Loft insulation to 270mm (£500 / £300/yr)</strong> is the best fabric value in Britain — top up from nothing and it pays back in under two years. <strong>Cavity wall fill (£1,000 / £350/yr)</strong> is excellent <em>if</em> the walls are suitable — run the Cavity Wall Suitability Checker first, because fill in the wrong wall causes damp that costs thousands to remediate. Together they are the planner's default £1,500 for £650 a year, and they are also what makes Phase C cheaper: every kWh of heat loss you eliminate is heat-pump capacity you don't buy.</p>
+<p><strong>Double glazing (£5,000 / £165/yr)</strong> sits in Phase B on comfort grounds, with the honest flag this site always flies: the payback is measured in decades. Do it for warmth, noise and condensation, in the rooms you live in, and never let a salesman sell it as an investment. Solid-wall insulation (£8,000–£15,000) is the big-ticket fabric item for pre-1920 homes — transformative, disruptive, and worth pricing once the quick fabric is done. The planner leaves it unticked by default for cavity-wall homes; tick it if your walls are solid.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>Fabric first</dt><dd>The retrofit principle: reduce heat loss (insulation, draughts, glazing) before upgrading heating systems.</dd>
+<dt>Phased retrofit</dt><dd>Sequencing measures as quick wins → fabric → systems, so each phase makes the next cheaper.</dd>
+<dt>Disruption level</dt><dd>How much upheaval a measure causes — from an afternoon (LEDs) to weeks of scaffolding (external wall insulation). Plan it around life, not just budget.</dd>
+<dt>BUS grant</dt><dd>Boiler Upgrade Scheme: £7,500 toward a heat pump for fossil-fuel replacements in England and Wales.</dd>
+</dl></div>
+<h2>Phase C: systems sized for the improved fabric</h2>
+<p>Only now — with the quick wins banked and the fabric done — do you quote the big systems, because only now do you know what size you need. <strong>Solar PV 4kWp (£6,400 / £605/yr)</strong> is the default Phase C anchor: 10.6-year payback at current prices, 25-year asset, and the export income keeps working after payback. <strong>The heat pump (£4,500 net of the £7,500 BUS grant)</strong> carries this site's standing honesty warning: at a 24p/6p electricity-to-gas price ratio, a heat pump can cost <em>more</em> to run than the gas boiler it replaces (the calculator shows −£56 a year on the standard test case). It still cuts carbon ~1.6 tonnes a year, and on cheaper overnight tariffs the running-cost maths improves — but buy it for carbon and comfort, not for a bill saving that the arithmetic doesn't support.</p>
+<p><strong>The battery (£5,000 / £242/yr)</strong> is unticked by default and stays that way for most homes: twenty-year paybacks are not investments, they're lifestyle purchases (backup power, outage resilience). Tick it if you have frequent outages or are on a steep time-of-use tariff where the arbitrage works. The planner's job is to show you these numbers side by side so the sequencing decision is arithmetic, not salesmanship.</p>
+<h2>Budgeting: the £15,000 example</h2>
+<p>The spec test case — 1970s semi, EPC D, £15,000 budget — is the modal British retrofit, so walk through it. Phase A: £525 out, £592/yr back. Phase B (loft + cavity): £1,500 out, £650/yr back. Phase C (solar 4kWp): £6,400 out, £605/yr back. Cumulative: <strong>£8,425 spent, £1,847 a year saved, ~2.5 tonnes of CO₂ cut</strong> — comfortably inside the £15,000 budget with £6,575 in hand for the heat-pump decision, the glazing, or the contingency every old house demands. The blended payback of the whole plan is under five years, and the house that emerges is warmer, quieter, and worth more.</p>
+<p>Two budgeting rules the planner bakes in: <strong>keep 15–20% contingency</strong> on any phase involving opening up the building (old houses hide surprises — the loft with no felt, the cavity full of rubble), and <strong>never spend the whole budget in Phase C on day one</strong>. Prices fall, grants change, and the fabric work you do this year makes next year's system quotes smaller. The planner's budget verdict flags overspend per plan; treat "within budget" as the start of the conversation, not the end.</p>
+<h2>Getting it done: installers and sequencing in practice</h2>
+<p>The plan is only as good as the people who execute it. Fabric measures: use certified installers — <strong>CIGA</strong> for cavity wall, <strong>MCS</strong> for heat pumps and solar, <strong>FENSA</strong> for glazing. Get three quotes for anything over £1,000; the spread will shock you (30–50% is normal). Sequence the disruptive work together where you can — scaffolding once for solar + external wall insulation, not twice — and schedule heating-system swaps for spring/summer when you're not depending on the system. Tell each tradesperson what phase you're in: the solar installer who knows the loft is being done next month sizes differently from the one who assumes today's heat loss.</p>
+<p>And keep the paperwork. EPC assessments, MCS certificates, guarantees and grant approvals all feed the home's value and any future sale — a documented retrofit with certificates is worth more than an identical undocumented one, because the buyer's surveyor can verify it. The printable summary (browser print from the results panel) is your starting file: plan, costs, savings, CO₂, dates. In January this planner becomes a fuller product; for now, it is the most honest page in the retrofit internet — including about the measures that don't pay.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>What order should I do home retrofit measures in?</summary><p>Quick wins first (LEDs, draught-proofing, controls — under £500, payback under 2 years), then fabric (loft, walls, glazing), then systems (solar, heat pump) sized for the improved building. Fabric before heating is the golden rule.</p></details>
+<details><summary>How much does a whole-house retrofit cost in the UK?</summary><p>The classic three-phase plan for a 1970s semi (quick wins + loft/cavity + 4kWp solar) costs about £8,425 and saves ~£1,847/yr. A deep retrofit with heat pump and glazing runs £15,000-£25,000 after grants.</p></details>
+<details><summary>Should I get a heat pump before insulating?</summary><p>No — insulate first. A heat pump sized for a draughty house is bigger, pricier and harder to run than one sized for the insulated version of the same house. Fabric first, systems last.</p></details>
+<details><summary>Does a heat pump actually save money vs a gas boiler?</summary><p>Often not at current prices: at 24p/kWh electricity vs 6p/kWh gas, the standard test case costs £56/yr MORE to run. It cuts ~1.6t CO₂/yr and wins on cheap overnight tariffs — buy it for carbon, not the bill.</p></details>
+<details><summary>How do I budget for unexpected retrofit costs?</summary><p>Keep 15-20% contingency on any phase that opens up the building. Old houses hide surprises: rubble-filled cavities, no loft felt, undersized radiators. Never spend the whole budget in Phase C on day one.</p></details>
+<details><summary>Which installer certifications should I look for?</summary><p>MCS for heat pumps and solar PV, CIGA for cavity wall insulation, FENSA for glazing. Get three quotes for anything over £1,000 — 30-50% price spreads are normal.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/home-energy-check/">Home energy check</a></li>
+<li>gov.uk — <a href="https://www.gov.uk/government/collections/find-energy-grants-for-you-home-help-to-heat">Find energy grants for your home</a></li>
+<li>MCS — <a href="https://mcscertified.com/">Find MCS-certified installers</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+var MEASURES=[
+{name:"LED lighting (whole house)",phase:"A",cost:80,save:231,co2:0.20,d:"Cheapest win on this site — months payback."},
+{name:"Hot water cylinder jacket",phase:"A",cost:35,save:85,co2:0.15,d:"80mm jacket on an uninsulated cylinder."},
+{name:"Draught-proofing",phase:"A",cost:150,save:70,co2:0.25,d:"Doors, windows, chimney, floorboards."},
+{name:"Standby smart plugs",phase:"A",cost:40,save:44,co2:0.04,d:"One strip for the entertainment stack."},
+{name:"Smart thermostat + TRVs",phase:"A",cost:220,save:162,co2:0.30,d:"Zoned control, geofencing."},
+{name:"Loft insulation to 270mm",phase:"B",cost:500,save:300,co2:0.65,d:"Top up from nothing — the classic."},
+{name:"Cavity wall insulation",phase:"B",cost:1000,save:350,co2:0.75,d:"If walls are suitable (see checker)."},
+{name:"Double glazing (10 windows)",phase:"B",cost:5000,save:165,co2:0.35,d:"Comfort first — payback is long."},
+{name:"Solar PV 4kWp",phase:"C",cost:6400,save:605,co2:0.87,d:"Sized for the improved fabric."},
+{name:"Heat pump (net of BUS grant)",phase:"C",cost:4500,save:-56,co2:1.60,d:"Running cost can exceed gas at 24p/6p — see honest maths."},
+{name:"Solar battery 10kWh",phase:"C",cost:5000,save:242,co2:0.31,d:"Rarely pays — comfort/backup value."}
+];
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+(function buildChecks(){
+  var box=document.getElementById("mchecks");
+  MEASURES.forEach(function(m,i){
+    var lab=document.createElement("label");
+    var on=(m.name==="Double glazing (10 windows)"||m.name==="Solar battery 10kWh"||m.name==="Heat pump (net of BUS grant)")?false:true;
+    lab.innerHTML='<input type="checkbox" class="mchk" data-i="'+i+'"'+(on?" checked":"")+'> '+m.name+' <span class="hint" style="display:inline">(Phase '+m.phase+')</span>';
+    box.appendChild(lab);
+  });
+})();
+function bandOf(yes){ if(yes>=5) return "F/G"; if(yes>=3) return "E"; if(yes>=2) return "D"; return "C"; }
+function calculate(){
+  var budget=num("budget"), goal=document.getElementById("goal").value;
+  var eqs=document.querySelectorAll(".eq"), yes=0, touched=false;
+  eqs.forEach(function(s){ if(s.value==="1"){yes++;} });
+  var epcNote="";
+  if(document.querySelectorAll(".eq")[0].value!=="1"||true){
+    // quiz answered if user changed anything from defaults; use band estimate when >=1 yes
+    var bandEst = yes>=1 ? bandOf(yes) : null;
+    if(bandEst){ epcNote="Quick-estimate EPC: ~"+bandEst+". "; }
+  }
+  var sel=[];
+  document.querySelectorAll(".mchk").forEach(function(cb){
+    if(cb.checked) sel.push(MEASURES[parseInt(cb.getAttribute("data-i"))]);
+  });
+  function rank(a,b){
+    if(goal==="carbon") return (b.co2/Math.max(b.cost,1))-(a.co2/Math.max(a.cost,1));
+    var pa=a.save>0?a.cost/a.save:1e9, pb=b.save>0?b.cost/b.save:1e9;
+    return pa-pb;
+  }
+  var phases={A:[],B:[],C:[]};
+  sel.forEach(function(m){phases[m.phase].push(m);});
+  ["A","B","C"].forEach(function(p){phases[p].sort(rank);});
+  var totC=0,totS=0,totCo2=0, html="";
+  var names={A:"Phase A \u2014 Quick wins (payback <2 yrs, do this weekend)",B:"Phase B \u2014 Fabric first (the building before the heating)",C:"Phase C \u2014 Systems (sized for the improved fabric)"};
+  ["A","B","C"].forEach(function(p){
+    if(!phases[p].length) return;
+    var c=0,s=0,co=0, rows="";
+    phases[p].forEach(function(m){
+      c+=m.cost; s+=m.save; co+=m.co2;
+      rows+="<tr><td style='padding:8px;border-bottom:1px solid #e1e1e1'>"+m.name+"<br><span style='color:#737373;font-size:13px'>"+m.d+"</span></td><td style='padding:8px;border-bottom:1px solid #e1e1e1'>"+money(m.cost)+"</td><td style='padding:8px;border-bottom:1px solid #e1e1e1'>"+(m.save>=0?"+":"")+money(m.save)+"/yr</td><td style='padding:8px;border-bottom:1px solid #e1e1e1'>"+m.co2.toFixed(2)+" t</td></tr>";
+    });
+    totC+=c; totS+=s; totCo2+=co;
+    html+="<h3 style='font-family:Arvo,serif;margin:22px 0 8px'>"+names[p]+"</h3>"+
+      "<table style='width:100%;border-collapse:collapse;font-size:14.5px'><thead><tr><th style='text-align:left;padding:8px;border-bottom:2px solid #04a8d0'>Measure</th><th style='padding:8px;border-bottom:2px solid #04a8d0'>Cost</th><th style='padding:8px;border-bottom:2px solid #04a8d0'>Saving</th><th style='padding:8px;border-bottom:2px solid #04a8d0'>CO\u2082</th></tr></thead><tbody>"+rows+"</tbody></table>"+
+      "<p style='margin-top:8px'><strong>Phase subtotal:</strong> "+money(c)+" cost \u00B7 "+money(s)+"/yr saving \u00B7 "+co.toFixed(2)+" t CO\u2082/yr</p>";
+  });
+  document.getElementById("r-phases").innerHTML=(epcNote?'<p style="color:#737373">'+epcNote+'</p>':"")+html;
+  document.getElementById("r-total-save").textContent=(totS>=0?"+":"")+money(totS)+"/yr";
+  document.getElementById("r-total-cost").textContent=money(totC);
+  document.getElementById("r-total-co2").textContent=totCo2.toFixed(2)+" t";
+  document.getElementById("r-budget").textContent=totC<=budget?"Within budget":"\u00A3"+(totC-budget).toLocaleString()+" over";
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>

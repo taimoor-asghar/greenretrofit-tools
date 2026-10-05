@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EV Home Charger Cost Calculator | Green Retrofit Guide</title>
+<meta name="description" content="Work out whether a home EV charger pays for itself: petrol vs electric running costs, EV tariff savings and charger payback for UK drivers.">
+<link rel="canonical" href="https://greenretrofitguide.com/tools/ev-home-charger/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EV Home Charger Cost Calculator | Green Retrofit Guide">
+<meta property="og:description" content="Work out whether a home EV charger pays for itself: petrol vs electric running costs, EV tariff savings and charger payback for UK drivers.">
+<meta property="og:url" content="https://greenretrofitguide.com/tools/ev-home-charger/">
+<meta property="og:site_name" content="Green Retrofit Guide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azure:#04a8d0;--azure-dark:#0387a8;--azure-tint:#e8f7fc;--body:#353535;--muted:#737373;--line:#e1e1e1;--page:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito",-apple-system,"Segoe UI",sans-serif;color:var(--body);background:var(--page);line-height:1.65;font-size:17px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.site-head{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.site-head .wrap{display:flex;align-items:center;gap:10px}
+.site-head a{font-family:"Arvo",serif;font-weight:700;color:var(--azure);text-decoration:none;font-size:20px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}
+.crumbs a{color:var(--azure);text-decoration:none}
+h1{font-family:"Arvo",serif;font-size:30px;line-height:1.3;margin:0 0 12px;color:#1f1f1f}
+.lead{font-size:18px;color:#4a4a4a;margin-bottom:22px}
+.byline{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.byline .avatar{width:42px;height:42px;border-radius:50%;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:"Arvo",serif;font-size:18px;flex:none}
+.byline a{color:var(--azure);text-decoration:none;font-weight:700}
+.calc{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.05);padding:22px;margin-bottom:28px}
+.calc h2{font-family:"Arvo",serif;font-size:20px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field .hint{font-weight:400;color:var(--muted);font-size:13.5px;display:block;margin-top:2px}
+.field input[type=number],.field input[type=text],.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:"Nunito",sans-serif;font-size:16px;background:#fff;color:var(--body)}
+.field input:focus,.field select:focus{outline:2px solid var(--azure);border-color:var(--azure)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap}
+.radio-row label{font-weight:400;display:flex;align-items:center;gap:6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-weight:400;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:15px}
+.btn{display:inline-block;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:13px 26px;font-family:"Nunito",sans-serif;font-weight:700;font-size:17px;cursor:pointer;margin-top:6px}
+.btn:hover{background:var(--azure-dark)}
+.result{background:var(--azure-tint);border-left:5px solid var(--azure);border-radius:0 4px 4px 0;padding:20px;margin:22px 0;display:none}
+.result.show{display:block}
+.result .big{font-family:"Arvo",serif;font-size:34px;color:var(--azure-dark);margin-bottom:8px}
+.result .big small{font-size:16px;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.stat .v{font-family:"Arvo",serif;font-size:20px;color:#1f1f1f}
+.stat .k{font-size:13px;color:var(--muted)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:28px}
+.guide h2{font-family:"Arvo",serif;font-size:22px;margin:26px 0 12px;color:#1f1f1f}
+.guide h2:first-child{margin-top:0}
+.guide h3{font-family:"Arvo",serif;font-size:18px;margin:20px 0 10px;color:#1f1f1f}
+.guide p{margin-bottom:14px}
+.guide ul,.guide ol{margin:0 0 14px 22px}
+.guide li{margin-bottom:8px}
+.guide a{color:var(--azure)}
+.defbox{background:var(--azure-tint);border:1px solid #bfe6f4;border-radius:4px;padding:16px 18px;margin:18px 0}
+.defbox h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.defbox dl{display:grid;grid-template-columns:170px 1fr;gap:8px 14px;font-size:15px}
+.defbox dt{font-weight:700}
+.takeaways{background:#f4fbf0;border:1px solid #cde8c0;border-radius:4px;padding:16px 18px;margin:18px 0}
+.takeaways h3{font-family:"Arvo",serif;font-size:17px;margin:0 0 10px}
+.takeaways ul{margin-left:20px}
+.faq h2{font-family:"Arvo",serif;font-size:22px;margin-bottom:14px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:10px;padding:14px 16px}
+.faq summary{font-weight:700;cursor:pointer;font-size:16px}
+.faq details p{margin-top:10px;font-size:15.5px}
+.refs{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:28px;font-size:15px}
+.refs h2{font-family:"Arvo",serif;font-size:18px;margin-bottom:10px}
+.refs ul{margin-left:20px}
+.refs li{margin-bottom:6px}
+.site-foot{background:#fff;border-top:1px solid var(--line);margin-top:10px;padding:20px 0 34px;font-size:14px;color:var(--muted);text-align:center}
+.site-foot a{color:var(--azure);text-decoration:none}
+.note{background:#fff8e6;border:1px solid #f0d98c;border-radius:4px;padding:14px 16px;margin:18px 0;font-size:15px}
+.note strong{color:#8a6d00}
+@media(max-width:600px){h1{font-size:25px}.checks{grid-template-columns:1fr}.defbox dl{grid-template-columns:1fr}.calc{padding:16px}.guide{padding:18px}}
+@media print{.site-head,.calc,.btn,.faq{display:none}body{background:#fff}}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a home EV charger cost to install in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically £800-£1,200 for a 7 kW smart charger in 2026. Renters and flat owners can get £350 toward the cost via the government's EV chargepoint grant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it cheaper to charge an EV at home or use public chargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Home charging on an EV overnight tariff (7-10p/kWh) is far cheaper — roughly a quarter the cost per mile of petrol. Public rapid chargers at 60-80p/kWh cost roughly the same per mile as petrol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an EV tariff and do I need a smart meter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An EV tariff offers a cheap overnight window (typically 6 hours at 7-10p/kWh) for charging. Most require a smart meter, and the day rate is usually slightly above the standard tariff — still a big net win for EV drivers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I just charge my EV from a normal 3-pin socket?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, at ~2.3 kW (8-10 miles of range per hour). It suits low-mileage drivers as a stopgap, but a proper 7 kW chargepoint is faster, safer long-term and unlocks cheap-tariff scheduling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until a home charger pays for itself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At 8,000 miles a year on an EV tariff, the fuel saving is ~£1,150/year, so a £1,000 charger pays back in under a year. Low-mileage drivers take longer — run your own numbers above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I have no driveway. Can I still run an EV cheaply?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but it takes more planning: workplace charging, lamppost/bollard chargers, supermarket charging, and cross-pavement cable channels (permitted by growing numbers of councils). Check the EV chargepoint grant if you rent or own a flat."
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "EV Home Charger Cost Calculator | Green Retrofit Guide",
+  "description": "Work out whether a home EV charger pays for itself: petrol vs electric running costs, EV tariff savings and charger payback for UK drivers.",
+  "url": "https://greenretrofitguide.com/tools/ev-home-charger/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Taimoor Asghar",
+    "url": "https://greenretrofitguide.com/dr-taimoor-asghar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Green Retrofit Guide",
+    "url": "https://greenretrofitguide.com/"
+  },
+  "datePublished": "2026-10-05",
+  "dateModified": "5-october-2026",
+  "inLanguage": "en-GB",
+  "articleBody": "\n<h2>The EV running-cost maths, stated plainly</h2>\n<p>Electric cars win on running costs by a margin that surprises even enthusiasts. The test case above — 8,000 miles a year, a 40 mpg petrol car at £1.45 a litre, an EV doing 3.5 miles per kWh on a 7p overnight tariff — works out at £1,318 a year f"
+}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a href="https://greenretrofitguide.com/">Green Retrofit Guide</a></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://greenretrofitguide.com/">Home</a> &rsaquo; <a href="https://greenretrofitguide.com/tools/">Tools</a> &rsaquo; EV Home Charger Cost Calculator</nav>
+<h1>EV Home Charger Cost Calculator</h1>
+<p class="lead">Petrol at £1.45 a litre versus overnight electricity at 7p a unit — the maths of electric driving is startling. Enter your mileage to see your saving and how fast a home charger pays for itself.</p>
+<div class="byline"><span class="avatar" aria-hidden="true">TA</span><span>By <a href="https://greenretrofitguide.com/dr-taimoor-asghar/" rel="author">Dr Taimoor Asghar</a> &middot; Medically &amp; technically reviewed 5 October 2026</span></div>
+<section class="calc" aria-label="Calculator">
+<h2>Enter your details</h2>
+<form id="calc-form" onsubmit="return false;">
+
+<div class="field"><label for="miles">Annual miles</label>
+<input type="number" id="miles" value="8000" min="500" max="60000" step="100"></div>
+<div class="field"><label for="mpg">Current car fuel economy (mpg)</label>
+<input type="number" id="mpg" value="40" min="15" max="80" step="1"></div>
+<div class="field"><label for="petrolp">Petrol/diesel price (£/litre)</label>
+<input type="number" id="petrolp" value="1.45" min="0.8" max="2.5" step="0.01"></div>
+<div class="field"><label for="eff">EV efficiency (miles per kWh)</label>
+<input type="number" id="eff" value="3.5" min="2" max="6" step="0.1">
+<span class="hint">Typical: 3–4 mi/kWh for a family EV; 4–5 for a small efficient one.</span></div>
+<div class="field"><label for="tariff">Charging tariff</label>
+<select id="tariff">
+<option value="7" selected>EV overnight tariff — 7p/kWh</option>
+<option value="10">EV overnight tariff — 10p/kWh</option>
+<option value="24">Standard tariff — 24p/kWh</option>
+</select>
+<span class="hint">An EV-specific tariff (Octopus Intelligent Go, OVO Charge Anytime etc.) is what makes the maths spectacular.</span></div>
+<div class="field"><label for="install">Charger install cost (£)</label>
+<input type="number" id="install" value="1000" min="0" max="3000" step="50">
+<span class="hint">Typical 7 kW home charger: £800–£1,200 installed. Grants exist for renters and flat-dwellers.</span></div>
+
+<button class="btn" type="button" onclick="calculate()" style="width:100%">Calculate</button>
+</form>
+<div class="result" id="result" role="status" aria-live="polite">
+<div class="big"><span id="r-save"></span> <small>saved per year</small></div>
+<div class="stat-grid">
+<div class="stat"><div class="v" id="r-petrol"></div><div class="k">Petrol cost / year</div></div>
+<div class="stat"><div class="v" id="r-ev"></div><div class="k">EV charging / year</div></div>
+<div class="stat"><div class="v" id="r-payback"></div><div class="k">Charger payback</div></div>
+<div class="stat"><div class="v" id="r-co2"></div><div class="k">CO₂ cut / year</div></div>
+</div>
+<p style="margin-top:12px;font-size:14px;color:#737373" id="r-note"></p>
+</div>
+</section>
+<article class="guide">
+
+<h2>The EV running-cost maths, stated plainly</h2>
+<p>Electric cars win on running costs by a margin that surprises even enthusiasts. The test case above — 8,000 miles a year, a 40 mpg petrol car at £1.45 a litre, an EV doing 3.5 miles per kWh on a 7p overnight tariff — works out at £1,318 a year for petrol versus £160 for electricity. That is an £1,158 annual saving, and a £1,000 home charger pays for itself in under a year. These are not cherry-picked numbers; they are a mid-range family car, average mileage, and a mainstream EV tariff. The gap is structural: electric motors are roughly three times as efficient as petrol engines, and overnight electricity is roughly a fifth the price of petrol per unit of energy.</p>
+<p>The single biggest lever in the calculator is the tariff. At 7p overnight, 8,000 miles costs £160; on a standard 24p tariff the same miles cost £549 — still less than half the petrol cost, but the saving drops from £1,158 to £769. This is why the calculator defaults to an EV tariff: anyone buying an EV and charging at home should switch to one, and the switch itself is usually free. Public rapid charging, at 60–80p per kWh, is a different story — roughly petrol-parity — which is why home charging is the economic heart of EV ownership.</p>
+<h2>EV tariffs: how the cheap overnight rate works</h2>
+<p>EV tariffs give you a long cheap overnight window — typically 6 hours at 7–10p per kWh — in exchange for a slightly higher day rate. Octopus Intelligent Go (currently 7p for six hours), OVO Charge Anytime, and similar products from British Gas and E.ON all follow this pattern. The maths works if you can shift a meaningful share of charging into the cheap window, which anyone with a driveway and a timer can: 8,000 miles needs about 2,300 kWh a year, or roughly 6 kWh a night — under an hour on a 7 kW charger. Even households that cannot shift much other usage still win, because the day-rate premium is small relative to the overnight discount on the car's consumption.</p>
+<p>One caution: EV tariffs usually require a smart meter, and the day rate is typically a penny or two above the standard variable tariff. If you are a very low-mileage driver who barely charges at home, run both scenarios in the calculator before switching. For everyone else, the overnight rate is the cheapest motoring energy in Britain.</p>
+<div class="defbox"><h3>Key definitions</h3><dl>
+<dt>7 kW home charger</dt><dd>The standard UK home chargepoint: adds ~25–30 miles of range per hour. A full overnight charge covers most daily needs.</dd>
+<dt>EV tariff</dt><dd>An electricity tariff with a cheap overnight window for car charging (typically 7–10p/kWh for ~6 hours).</dd>
+<dt>mi/kWh</dt><dd>EV efficiency: miles travelled per kWh of electricity. Higher is better; 3.5 is typical for a family EV.</dd>
+<dt>Granny cable (3-pin)</dt><dd>Charging from a normal 13A socket at ~2.3 kW. Works, but slow and not ideal as a permanent solution.</dd>
+</dl></div>
+<h2>The charger itself: what to buy and what it costs</h2>
+<p>A standard 7 kW untethered or tethered chargepoint costs £800–£1,200 installed in 2026, which is the calculator's default. "Tethered" means the cable is permanently attached (convenient); "untethered" means you use the car's cable (tidier, and the socket suits visitors' cars). Smart chargers — which schedule charging for the cheap window and integrate with tariffs like Intelligent Octopus — are worth the small premium; dumb chargers rely on the car's own timer, which is fine but less flexible. Installation needs a spare way in your consumer unit and an earth arrangement your installer will assess; most straightforward driveway installs complete in half a day.</p>
+<p>Three-phase 22 kW chargers exist but are pointless for almost all UK homes: domestic supplies are single-phase, and very few cars can even accept 22 kW AC. Do not let anyone upsell you one. Similarly, "free" chargers bundled with a car purchase are worth exactly what the hardware and installer quality justify — check both.</p>
+<h2>Renters, flat-dwellers and no-driveway households</h2>
+<p>The charger maths assumes off-street parking, which roughly a third of UK households lack. If that is you, the options are: the <a href="https://www.gov.uk/government/collections/electric-vehicle-charging-infrastructure-grants">EV chargepoint grant</a> (£350 toward installation for renters and flat owners), workplace charging, lamppost and bollard chargers spreading through many councils, and the growing number of supermarkets and retail parks with affordable charging. The economics still favour EVs — public AC charging at 40–55p/kWh undercuts petrol — but the convenience gap is real, and it is the honest reason some households should wait for their next car rather than this one. Cross-pavement charging channels (a gulley for the cable across the pavement) are now permitted by a growing list of councils; check yours.</p>
+<h2>3-pin charging: the honest verdict</h2>
+<p>Every EV comes with a 3-pin "granny" cable that charges at about 2.3 kW — roughly 8–10 miles of range per hour. For a low-mileage driver doing 4,000 miles a year, that is genuinely enough: plug in overnight twice a week and you are done, no charger needed. The caveats are real but manageable: it is slow (a full charge takes 24+ hours), it ties up a socket, and long-term use wants a modern socket on its own circuit rather than a tired extension lead. As a permanent solution for average mileage, a proper 7 kW chargepoint is safer, faster, and unlocks smart-tariff scheduling — but the granny cable is a perfectly respectable stopgap, and it means the charger payback question can be "never", because you spent nothing.</p>
+<h2>The carbon case (and the battery-manufacturing question)</h2>
+<p>An EV on the UK grid produces roughly 0.05 kg CO₂ per mile versus 0.28 for petrol — an 80%+ cut in running emissions, as the calculator shows. The standard objection is battery manufacturing, which adds roughly 2–4 tonnes of CO₂e upfront depending on battery size and factory energy mix. At 8,000 miles a year, the EV saves about 1.8 tonnes annually, so the manufacturing debt is repaid in 1–2 years of driving — after which every mile is nearly free on carbon. And the grid keeps getting cleaner, which improves the EV's case every year it runs. Lifecycle analyses consistently show EVs ahead of petrol cars within two years of typical UK driving; the "but the battery" argument has not survived contact with the data for years. See our <a href="https://greenretrofitguide.com/tools/home-carbon-footprint/">carbon footprint calculator</a> for the full household picture.</p>
+<h2>When an EV does <em>not</em> make sense yet</h2>
+<p>Straight answers. If you drive under 3,000 miles a year, the fuel saving may never repay the EV price premium — keep your efficient petrol car and maintain it well; the greenest car is often the one already built. If you have no home or workplace charging and no reliable public option nearby, the convenience cost is real. And if your current car is young and efficient, replacing it early wastes the manufacturing carbon already spent — run it into the ground, then go electric. For everyone else doing average mileage with a driveway, the maths in the calculator above is about as one-sided as consumer economics gets.</p>
+
+<div class="takeaways"><h3>Key takeaways</h3><ul>
+<li>Always size the measure for your home before spending &mdash; this calculator gives you the numbers.</li>
+<li>Compare like-for-like quotes from certified installers and check live prices before you commit.</li>
+<li>Fabric first: insulation and draught-proofing make every later upgrade (heat pumps, solar) cheaper and more effective.</li>
+</ul></div>
+</article>
+<section class="faq"><h2>Frequently asked questions</h2><details><summary>How much does a home EV charger cost to install in the UK?</summary><p>Typically £800-£1,200 for a 7 kW smart charger in 2026. Renters and flat owners can get £350 toward the cost via the government's EV chargepoint grant.</p></details>
+<details><summary>Is it cheaper to charge an EV at home or use public chargers?</summary><p>Home charging on an EV overnight tariff (7-10p/kWh) is far cheaper — roughly a quarter the cost per mile of petrol. Public rapid chargers at 60-80p/kWh cost roughly the same per mile as petrol.</p></details>
+<details><summary>What is an EV tariff and do I need a smart meter?</summary><p>An EV tariff offers a cheap overnight window (typically 6 hours at 7-10p/kWh) for charging. Most require a smart meter, and the day rate is usually slightly above the standard tariff — still a big net win for EV drivers.</p></details>
+<details><summary>Can I just charge my EV from a normal 3-pin socket?</summary><p>Yes, at ~2.3 kW (8-10 miles of range per hour). It suits low-mileage drivers as a stopgap, but a proper 7 kW chargepoint is faster, safer long-term and unlocks cheap-tariff scheduling.</p></details>
+<details><summary>How long until a home charger pays for itself?</summary><p>At 8,000 miles a year on an EV tariff, the fuel saving is ~£1,150/year, so a £1,000 charger pays back in under a year. Low-mileage drivers take longer — run your own numbers above.</p></details>
+<details><summary>I have no driveway. Can I still run an EV cheaply?</summary><p>Yes, but it takes more planning: workplace charging, lamppost/bollard chargers, supermarket charging, and cross-pavement cable channels (permitted by growing numbers of councils). Check the EV chargepoint grant if you rent or own a flat.</p></details></section>
+<section class="refs"><h2>References &amp; further reading</h2><ul>
+<li>Energy Saving Trust — <a href="https://energysavingtrust.org.uk/advice/electric-vehicles/">Electric vehicles: advice</a></li>
+<li>Gov.uk — <a href="https://www.gov.uk/government/collections/electric-vehicle-charging-infrastructure-grants">EV chargepoint grants</a></li>
+<li>Zapmap — <a href="https://www.zapmap.com/">UK charging costs and price index</a></li>
+<li>Ofgem — <a href="https://www.ofgem.gov.uk/">Accredited energy comparison</a></li>
+</ul>
+<p style="margin-top:10px;color:#737373">Guide figures are typical UK values (Energy Saving Trust, MCS, gov.uk). Energy prices move &mdash; re-check tariffs at quote time.</p></section>
+</main>
+<footer class="site-foot"><div class="wrap"><p>&copy; 2026 Green Retrofit Guide &middot; <a href="https://greenretrofitguide.com/tools/">All tools</a> &middot; <a href="https://greenretrofitguide.com/">Home</a></p><p style="margin-top:6px">Informational only, not financial advice. Verify quotes and grant eligibility with official sources.</p></div></footer>
+<script>
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+function money(x){return "\u00A3"+x.toLocaleString("en-GB",{maximumFractionDigits:0});}
+function money2(x){return "\u00A3"+x.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calculate(){
+  var miles=num("miles"), mpg=num("mpg"), petrolP=num("petrolp"), eff=num("eff");
+  var tariffP=num("tariff"), install=num("install");
+  var petrolAnnual=miles/mpg*4.546*petrolP;
+  var evAnnual=miles/eff*tariffP/100;
+  var saving=petrolAnnual-evAnnual;
+  var payback=saving>0?install/saving:0;
+  var petrolCo2=miles*0.28/1000, evCo2=miles/eff*0.207/1000;
+  document.getElementById("r-save").textContent=money(Math.round(saving))+"/yr";
+  document.getElementById("r-petrol").textContent=money2(petrolAnnual);
+  document.getElementById("r-ev").textContent=money2(evAnnual);
+  document.getElementById("r-payback").textContent=payback>0?payback.toFixed(1)+" yrs":"—";
+  document.getElementById("r-co2").textContent=(petrolCo2-evCo2).toFixed(1)+" t";
+  document.getElementById("r-note").textContent=
+    "That's "+(saving/miles*100).toFixed(0)+"p saved per mile. Over 5 years you keep roughly "+money(Math.round(saving*5))+" versus petrol.";
+  document.getElementById("result").classList.add("show");
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+window.addEventListener("load",calculate);
+
+</script>
+</body>
+</html>
